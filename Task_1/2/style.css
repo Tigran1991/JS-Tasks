@@ -7,4 +7,55 @@
 .container {
 	margin: auto;
 	width: 1000px;
+	height: 100vh;
+	border: 1px solid #333;
+	border-radius: 20px;
+	padding: 25px;
+}
+
+.top {
+	width: 100%;
+	height: 50%;
+}
+
+.title {
+	color: #6cbfec;
+	text-align: center;
+	grid-column: span 1;
+}
+
+.image_wrapper {
+	float: left;
+	width: calc(950px / 6);
+	height: 200px;
+	background-image: url(images/css.png);
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	margin-right: 30px;
+}
+
+.text {
+	display: float;
+	font-family: Comic Sans MS;
+}
+
+.bottom {
+	display: grid;
+}
+
+.subtitle {
+	display: grid;
+	grid-column: 1/4;
+	text-align: center;
+}
+
+.user1,
+.user2,
+.user3 {
+	display: grid;
+	grid-row: span 2;
+	width: 285px;
+	gap: 20px;
+	border: 1px solid #333;
 }
