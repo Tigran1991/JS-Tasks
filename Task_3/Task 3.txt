@@ -1,0 +1,11 @@
+7.	Declare variable. Initialize it with the value, which shows temperature in degrees Celsius. Print its equivalent in degrees Fahrenheit. To convert temperatures 	in degrees Celsius to Fahrenheit use the following formula: °C * 1.8 +32 = °F .
+8.	Given two numbers print 1 if one of them is divisible by the other one, otherwise print 0.
+9.	Given three numbers. Find the maximum one.
+14.  	Print all numbers between 1 and 10.
+15.	Print all numbers between 1 and 10 except 6.
+16.	Print all even numbers between 1 and 10.
+17.	Calculate the sum of all numbers between 1 and 10 (using loop).
+18.	Calculate the sum of all numbers between 1 and 10 except 8.
+19.	Calculate the sum of all odd numbers between 1 and 10.
+20.	Calculate the sum of squares of all numbers between 1 and 10.
+22.	Given five numbers as input. Calculate and print the average of the numbers. 
