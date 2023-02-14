@@ -1,0 +1,26 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+#container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100vw;
+	height: 100vh;
+	background-color: red;
+}
+
+#cross {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	width: 400px;
+	height: 400px;
+	background-color: white;
+}
+
+.red {
+	background-color: red;
+}
