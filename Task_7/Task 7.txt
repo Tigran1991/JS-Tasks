@@ -1,0 +1,33 @@
+{
+       author: 'Bill Gates',
+       title: 'The Road Ahead',
+       readingStatus: true
+},
+
+
+1. Զանգվածով ստանալ վերը նշված օբյեկտի key-երը
+2. Զանգվածով ստանալ վերը նշված օբյեկտի value-ները
+3․ ['author', 'title', 'readingStatus'] և ['Bill Gates', 'The Road Ahead', true] զանգվածներից ստանալ օբյեկտ, որտեղ key-երը 
+առաջին զանգվածի էլեմենտներն են, իսկ value-ները 2րդ զանգվածի։ 
+4․ let  library = [ 
+   {
+       title:  'The Road Ahead',
+       author: 'Bill Gates',
+       libraryID: 1254
+   },
+   {
+       title: 'Walter Isaacson',
+       author: 'Steve Jobs',
+       libraryID: 4264
+   },
+   {
+       title: 'Mockingjay: The Final Book of The Hunger Games',
+       author: 'Suzanne Collins',
+       libraryID: 3245
+   }];
+
+
+ Սորտավորել զանգվածը ըստ յուր․ օբյեկտի libraryId-ի։
+
+5․ Գրել ֆունկցիա, որը կջնջի զանգվածում եղած null, 0, '', "", undefined, false էլեմենտները
+[NaN, 0, 15, false, -22, '',undefined, 47,  null] 
