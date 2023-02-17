@@ -22,21 +22,27 @@
 
 // 2․ Ստեղծել ֆունկցիա, որը որպես արգումենտ ընդունած թիվը կստուգի և կասի այն պարզ թիվ է թե ոչ
 
-// const checkTheClarityOfTheNumber = (number) => {
-// 	const squareRootOfNumber = Math.sqrt(number)
-// 	if (number === 1) {
-// 		return "This is Simple number"
-// 	}
-// 	for (let i = 2; i < number; i++) {
-// 		if (number % i === 0) {
-// 			return "This is not Simple number"
-// 		} else {
-// 			return "This is Simple number"
+// const checkIsItPrimeNumber = (number) => {
+// 	const checkIsPositiveNumberisPrime = () => {
+// 		for (let i = 2; i < number; i++) {
+// 			if (number % i === 0) {
+// 				return "This is not Simple number"
+// 			} else {
+// 				return "This is Simple number"
+// 			}
 // 		}
+// 	}
+
+// 	if (number < 0) {
+// 		return "The number must be positive"
+// 	} else if (number === 1) {
+// 		return "This is Simple number"
+// 	} else {
+// 		return checkIsPositiveNumberisPrime()
 // 	}
 // }
 
-// console.log(checkTheClarityOfTheNumber(24))
+// console.log(checkIsItPrimeNumber(3))
 
 // 3․ Գրել ֆունկցիա, որը կտպի True, եթե լիստի բոլոր էլեմենտները 1 կամ 4 են։ Հակառակ դեպքում տպել False:
 
