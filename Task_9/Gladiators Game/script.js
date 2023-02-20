@@ -28,6 +28,7 @@ const playGame = (inputElement) => {
 	}
 
 	const gladiatorsListData = createGladiatorsListData()
+	console.log(gladiatorsListData)
 
 	const createGladiatorField = () => {
 		const gladiatorsField = document.createElement("div")
@@ -185,30 +186,7 @@ const playGame = (inputElement) => {
 			[1, 0],
 		]
 
-		const updateGladiatorsInArena = (updatedHealth, todo) => {
-			checkedGladiatorsListData[todo].health = updatedHealth
-
-			const updateGladiators = () => {
-				checkedGladiatorsListData.forEach((gladiator, i) => {
-					const currentGladiatorElements = Array.from(
-						document.getElementsByClassName("current_gladiator")
-					)
-					currentGladiatorElements[todo].remove()
-					const gladiatorCharacter = createCurrentGladiator(
-						gladiator,
-						"current_gladiator"
-					)
-					arena.appendChild(gladiatorCharacter)
-				})
-			}
-
-			updateGladiators()
-		}
-
-		const updateGladiatorsInGladiatorsField = (
-			updatedHealth,
-			gladiatorsIndex
-		) => {
+		const updateGladiatorsInArena = (updatedHealth, gladiatorsIndex) => {
 			checkedGladiatorsListData[gladiatorsIndex].health = updatedHealth
 
 			const updateGladiators = () => {
@@ -221,6 +199,9 @@ const playGame = (inputElement) => {
 						gladiator,
 						"current_gladiator"
 					)
+					if (gladiator.borderColor === "red") {
+						gladiatorCharacter.style.border = "1px solid red"
+					}
 					arena.appendChild(gladiatorCharacter)
 				})
 			}
@@ -228,14 +209,31 @@ const playGame = (inputElement) => {
 			updateGladiators()
 		}
 
+		const updateGladiatorsListData = () => {
+			gladiatorsListData.forEach((gladiator) => {
+				if (gladiator.health > 0) {
+					const gladiatorCharacter = createCurrentGladiator(
+						gladiator,
+						"gladiator"
+					)
+					gladiatorsField.appendChild(gladiatorCharacter)
+				}
+			})
+		}
+
+		const countGladiatorsHealth = (hiter, kiker) => {
+			const updatedGladiatorsHealth =
+				checkedGladiatorsListData[kiker].health -
+				checkedGladiatorsListData[hiter].power
+			return updatedGladiatorsHealth
+		}
+
 		const hitTheGladiator = () => {
 			if (orderOfAction.length !== 0) {
-				const hitter = orderOfAction[0][0]
-				const kiker = orderOfAction[0][1]
-				const updatedGladiatorsHealth =
-					checkedGladiatorsListData[kiker].health -
-					checkedGladiatorsListData[hitter].power
-				updateGladiatorsInArena(updatedGladiatorsHealth, kiker)
+				const hitersIndex = orderOfAction[0][0]
+				const kikersIndex = orderOfAction[0][1]
+				const updatedHealth = countGladiatorsHealth(hitersIndex, kikersIndex)
+				updateGladiatorsInArena(updatedHealth, kikersIndex)
 				orderOfAction.shift()
 			}
 			if (orderOfAction.length === 0) {
@@ -244,13 +242,14 @@ const playGame = (inputElement) => {
 						const gladiatorElements = Array.from(
 							document.getElementsByClassName("gladiator")
 						)
-						console.log(gladiatorElements)
 						gladiatorElements.forEach((element) => {
 							return element.remove()
 						})
 					}
-					drawGladiatorsInGladiatorsField()
+					updateGladiatorsListData()
 					document.querySelector(".arena_field").remove()
+					document.querySelector("body").style.background =
+						"url('/image/background-wallpaper2.jpg') center / cover no-repeat"
 				}, 1000)
 			}
 		}

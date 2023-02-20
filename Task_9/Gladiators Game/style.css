@@ -4,6 +4,10 @@
 	box-sizing: border-box;
 }
 
+body {
+	background: url("/image/background-wallpaper.jpg") center / cover no-repeat;
+}
+
 .container {
 	display: flex;
 	flex-direction: column;
@@ -57,8 +61,8 @@ button {
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	width: 70%;
-	height: 20vh;
+	width: fit-content;
+	height: fit-content;
 	margin-top: 30px;
 }
 
@@ -68,6 +72,8 @@ button {
 	align-items: center;
 	height: fit-content;
 	border: 1px solid #333;
+	background-color: #fff;
+	margin-right: 10px;
 }
 
 .current_gladiator {
@@ -76,6 +82,7 @@ button {
 	align-items: center;
 	height: fit-content;
 	border: 1px solid #333;
+	background-color: #fff;
 }
 
 .arena_field {
