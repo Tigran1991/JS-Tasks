@@ -93,7 +93,7 @@ const playGame = (inputElement) => {
 	const checkGladiators = () => {
 		const createArenaField = () => {
 			const field = document.createElement("div")
-			field.setAttribute("class", "arenaField")
+			field.setAttribute("class", "arena_field")
 			container.appendChild(field)
 			return field
 		}
@@ -205,15 +205,18 @@ const playGame = (inputElement) => {
 			updateGladiators()
 		}
 
-		const updateGladiatorsInGladiatorsField = (updatedHealth, todo) => {
-			checkedGladiatorsListData[todo].health = updatedHealth
+		const updateGladiatorsInGladiatorsField = (
+			updatedHealth,
+			gladiatorsIndex
+		) => {
+			checkedGladiatorsListData[gladiatorsIndex].health = updatedHealth
 
 			const updateGladiators = () => {
 				checkedGladiatorsListData.forEach((gladiator, i) => {
 					const currentGladiatorElements = Array.from(
 						document.getElementsByClassName("current_gladiator")
 					)
-					currentGladiatorElements[todo].remove()
+					currentGladiatorElements[gladiatorsIndex].remove()
 					const gladiatorCharacter = createCurrentGladiator(
 						gladiator,
 						"current_gladiator"
@@ -234,6 +237,21 @@ const playGame = (inputElement) => {
 					checkedGladiatorsListData[hitter].power
 				updateGladiatorsInArena(updatedGladiatorsHealth, kiker)
 				orderOfAction.shift()
+			}
+			if (orderOfAction.length === 0) {
+				setTimeout(() => {
+					if (document.getElementsByClassName("gladiator") !== null) {
+						const gladiatorElements = Array.from(
+							document.getElementsByClassName("gladiator")
+						)
+						console.log(gladiatorElements)
+						gladiatorElements.forEach((element) => {
+							return element.remove()
+						})
+					}
+					drawGladiatorsInGladiatorsField()
+					document.querySelector(".arena_field").remove()
+				}, 1000)
 			}
 		}
 
