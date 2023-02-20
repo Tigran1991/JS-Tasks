@@ -28,7 +28,6 @@ const playGame = (inputElement) => {
 	}
 
 	const gladiatorsListData = createGladiatorsListData()
-	console.log(gladiatorsListData)
 
 	const createGladiatorField = () => {
 		const gladiatorsField = document.createElement("div")
@@ -123,32 +122,24 @@ const playGame = (inputElement) => {
 		const gladiatorsIndexes = new Array(CHECKED_GLADIATORS).fill(X)
 		const checkedGladiatorsRange = gladiatorsListData.length
 
-		gladiatorsIndexes[X] = REUSABLE.getRandomNumberInRange(
-			X,
-			checkedGladiatorsRange
-		)
-
-		const checkRandomGladiatorsIndexes = () => {
-			gladiatorsIndexes[Y] = REUSABLE.getRandomNumberInRange(
-				X,
-				checkedGladiatorsRange
-			)
+		const checkRandomGladiatorsIndexes = (range) => {
+			gladiatorsIndexes[X] = REUSABLE.getRandomNumberInRange(X, range)
+			gladiatorsIndexes[Y] = REUSABLE.getRandomNumberInRange(X, range)
 			if (gladiatorsIndexes[X] === gladiatorsIndexes[Y]) {
-				checkRandomGladiatorsIndexes()
+				checkRandomGladiatorsIndexes(range)
 			}
 			return gladiatorsIndexes
 		}
 
 		const checkRandomGladiators = () => {
-			const gladiatorsIndexes = checkRandomGladiatorsIndexes()
-
+			const list = gladiatorsListData.filter((element) => element.health > 0)
+			console.log(list)
+			const gladiatorsIndexes = checkRandomGladiatorsIndexes(list.length)
+			console.log(gladiatorsIndexes)
 			const checkedGladiators = gladiatorsIndexes.map((index, i) => {
-				if (i === X) {
-					gladiatorsListData[index].borderColor = "red"
-				}
-				return gladiatorsListData[index]
+				return list[index]
 			})
-
+			console.log(checkedGladiators)
 			return checkedGladiators
 		}
 
@@ -210,15 +201,15 @@ const playGame = (inputElement) => {
 		}
 
 		const updateGladiatorsListData = () => {
-			gladiatorsListData.forEach((gladiator) => {
-				if (gladiator.health > 0) {
-					const gladiatorCharacter = createCurrentGladiator(
-						gladiator,
-						"gladiator"
-					)
-					gladiatorsField.appendChild(gladiatorCharacter)
-				}
+			const list = gladiatorsListData.filter((element) => element.health > 0)
+			list.forEach((gladiator) => {
+				const gladiatorCharacter = createCurrentGladiator(
+					gladiator,
+					"gladiator"
+				)
+				gladiatorsField.appendChild(gladiatorCharacter)
 			})
+			return list
 		}
 
 		const countGladiatorsHealth = (hiter, kiker) => {
