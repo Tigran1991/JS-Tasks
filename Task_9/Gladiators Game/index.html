@@ -6,19 +6,26 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Gladiator Game</title>
 		<link rel="stylesheet" href="style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
 	<body>
-		<div class="container">
-			<form class="form">
+		<div class="main container">
+			<form class="main form">
 				<input
 					type="number"
 					name="number of gladiators"
-					class="gladiator"
-					id="gladiator"
+					class="main input_gladiator"
+					placeholder="enter number of gladiators"
 				/>
-				<button type="submit">Add Gladiators</button>
+				<button type="submit" class="play_game">Play Game</button>
 			</form>
 		</div>
 		<script src="script.js"></script>
+		<script src="utils.js"></script>
 	</body>
 </html>

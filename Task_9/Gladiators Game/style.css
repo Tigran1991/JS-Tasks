@@ -7,8 +7,44 @@
 .container {
 	display: flex;
 	flex-direction: column;
-	width: 100%;
+	align-items: center;
+	margin: 0 auto;
+	width: 70%;
 	height: 100vh;
+	font-family: "Gideon Roman", cursive;
+}
+
+button {
+	cursor: pointer;
+}
+
+.input_gladiator {
+	width: 200px;
+	height: 40px;
+	outline: none;
+	border: 1px solid #b8b3b3;
+	padding: 3px;
+	font-family: "Luxurious Roman", cursive;
+	font-weight: 500;
+	margin-top: 40px;
+}
+
+.input_gladiator:focus {
+	border: 3px solid green;
+}
+
+.play_game {
+	width: 100px;
+	height: 40px;
+	color: #fff;
+	background-color: blue;
+	outline: none;
+	margin-left: 10px;
+	border-radius: 4px;
+	font-family: "Gideon Roman", cursive;
+	font-weight: 500;
+	border: none;
+	cursor: pointer;
 }
 
 .check_gladiators {
@@ -19,28 +55,55 @@
 .gladiators_field {
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 	justify-content: space-between;
 	width: 70%;
 	height: 20vh;
-	border: 1px solid #333;
 	margin-top: 30px;
+}
+
+.gladiator {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: fit-content;
+	border: 1px solid #333;
 }
 
 .current_gladiator {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 30%;
-	height: 100%;
+	height: fit-content;
 	border: 1px solid #333;
+}
+
+.arenaField {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	width: 70%;
+	height: 20vh;
+	margin-top: 30px;
 }
 
 .arena {
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 	justify-content: space-around;
 	width: 70%;
 	height: 20vh;
-	border: 1px solid #333;
 	margin-top: 30px;
+}
+
+.gladiators_arena {
+	width: fit-content;
+	height: fit-content;
+}
+
+.strike_btn {
+	width: 60px;
+	height: 30px;
 }

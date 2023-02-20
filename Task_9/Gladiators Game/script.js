@@ -1,129 +1,262 @@
-const makeGame = () => {
+const X = 0,
+	Y = 1
+const HEALTH_MIN = 80
+const HEALTH_MAX = 150
+const POWER_MIN = 5
+const POWER_MAX = 15
+const CHECKED_GLADIATORS = 2
+
+const playGame = (inputElement) => {
 	const container = document.querySelector(".container")
-	const form = document.querySelector("form")
-	const input = document.querySelector("input")
+	const numberOfGladiators = Number(inputElement.value)
+	const gladiatorsInitialList = new Array(numberOfGladiators).fill({})
 
-	const playGame = (e) => {
-		e.preventDefault()
-		const numberOfGladiators = Number(input.value)
-		const gladiators = []
-
-		const getRandomNumberInRange = (min, max) =>
-			Math.floor(Math.random() * (max - min)) + min
-
-		const createGladiator = (nameIndex) => {
+	const createGladiatorsListData = () => {
+		const createGladiatorsData = (nameIndex) => {
 			return {
-				name: `gladiator${nameIndex}`,
-				health: getRandomNumberInRange(80, 150),
-				power: getRandomNumberInRange(5, 15),
+				name: `gladiator_${nameIndex}`,
+				health: REUSABLE.getRandomNumberInRange(HEALTH_MIN, HEALTH_MAX),
+				power: REUSABLE.getRandomNumberInRange(POWER_MIN, POWER_MAX),
 			}
 		}
 
-		const createGladiatorsList = () => {
-			for (let i = 0; i < numberOfGladiators; i++) {
-				const currentGladiator = createGladiator(i)
-				gladiators.push(currentGladiator)
-			}
-			return gladiators
+		const gladiatorsList = gladiatorsInitialList.map((gladiator, index) => {
+			return createGladiatorsData(index)
+		})
+
+		return gladiatorsList
+	}
+
+	const gladiatorsListData = createGladiatorsListData()
+
+	const createGladiatorField = () => {
+		const gladiatorsField = document.createElement("div")
+		gladiatorsField.setAttribute("class", "gladiators_field")
+		container.appendChild(gladiatorsField)
+		return gladiatorsField
+	}
+
+	const createCheckGladiatorsBtn = () => {
+		const btn = document.createElement("button")
+		btn.setAttribute("class", "check_gladiators")
+		btn.innerText = "Check Gladiators"
+		container.appendChild(btn)
+		return btn
+	}
+
+	const gladiatorsField = createGladiatorField()
+	const checkGladiatorsBtn = createCheckGladiatorsBtn()
+
+	const createCurrentGladiator = (gladiatorsData, divClassName) => {
+		const { name, health, power } = gladiatorsData
+		const currentGladiator = document.createElement("div")
+		currentGladiator.setAttribute("class", `${divClassName}`)
+
+		const setGladiatorsData = (nodeElement, className, text) => {
+			const info = document.createElement(nodeElement)
+			info.setAttribute("class", className)
+			info.innerText = text
+			currentGladiator.appendChild(info)
+			return info
 		}
 
-		const gladiatorsList = createGladiatorsList()
-
-		const createGladiatorsField = () => {
-			const gladiatorsField = document.createElement("div")
-			gladiatorsField.setAttribute("class", "gladiators_field")
-			container.appendChild(gladiatorsField)
-			return gladiatorsField
-		}
-
-		const createCheckGladiatorsBtn = () => {
-			const btn = document.createElement("button")
-			btn.setAttribute("class", "check_gladiators")
-			btn.innerText = "Check Gladiators"
-			container.appendChild(btn)
-			return btn
-		}
-
-		const gladiatorsField = createGladiatorsField()
-		const checkGladiatorsBtn = createCheckGladiatorsBtn()
-
-		const drawGladiatorsInGladiatorsField = (field, list) => {
-			const createCurrentGladiator = (gladiatorsData) => {
-				const { name, health, power } = gladiatorsData
-				const currentGladiator = document.createElement("div")
-				currentGladiator.setAttribute("class", "current_gladiator")
-
-				const createGladiatorsInfo = (nodeElement, text) => {
-					const info = document.createElement(nodeElement)
-					info.setAttribute("class", `${info}`)
-					info.innerText = text
-					currentGladiator.appendChild(info)
-					return info
-				}
-
-				const gladiatorsName = createGladiatorsInfo("h3", `name - ${name}`)
-				const gladiatorHelath = createGladiatorsInfo("h4", `health - ${health}`)
-				const gladiatorPower = createGladiatorsInfo("h4", `power - ${power}`)
-
-				return currentGladiator
-			}
-
-			list.forEach((gladiator) => {
-				const gladiatorCharacter = createCurrentGladiator(gladiator)
-				field.appendChild(gladiatorCharacter)
-			})
-		}
-
-		const displayGladiatorsOnScreen = drawGladiatorsInGladiatorsField(
-			gladiatorsField,
-			gladiatorsList
+		const gladiatorsName = setGladiatorsData(
+			"h3",
+			"gladiators_name",
+			`name - ${name}`
 		)
+
+		const gladiatorHelath = setGladiatorsData(
+			"h4",
+			"gladiators_health",
+			`health - ${health}`
+		)
+
+		const gladiatorPower = setGladiatorsData(
+			"h4",
+			"gladiators_power",
+			`power - ${power}`
+		)
+
+		return currentGladiator
+	}
+
+	const drawGladiatorsInGladiatorsField = () => {
+		gladiatorsListData.forEach((gladiator) => {
+			const gladiatorCharacter = createCurrentGladiator(gladiator, "gladiator")
+			gladiatorsField.appendChild(gladiatorCharacter)
+		})
+	}
+
+	const displayGladiatorsOnScreen = drawGladiatorsInGladiatorsField()
+
+	const checkGladiators = () => {
+		const createArenaField = () => {
+			const field = document.createElement("div")
+			field.setAttribute("class", "arenaField")
+			container.appendChild(field)
+			return field
+		}
+
+		const arenaField = createArenaField()
 
 		const createArena = () => {
 			const arena = document.createElement("div")
 			arena.setAttribute("class", "arena")
-			container.appendChild(arena)
+			arenaField.appendChild(arena)
 			return arena
 		}
 
-		const checkGladiators = () => {
-			const checkRandomGladiatorIndex = () => {
-				const checkedGladiatorsIndexes = []
-				for (let i = 0; i < 2; i++) {
-					const randomIndex = getRandomNumberInRange(0, gladiatorsList.length)
-					checkedGladiatorsIndexes.push(randomIndex)
-				}
-				return checkedGladiatorsIndexes
-			}
+		const arena = createArena()
 
-			const checkRandomGladiators = () => {
-				const gladiatorsIndexes = checkRandomGladiatorIndex()
-
-				const checkedGladiators = gladiatorsIndexes.map((index) => {
-					return gladiatorsList[index]
-				})
-
-				return checkedGladiators
-			}
-
-			const checkedGladiatorsList = checkRandomGladiators()
-
-			const gladiatorsArena = createArena()
-
-			const drawCheckedGladiatorsInArena = () => {
-				return drawGladiatorsInGladiatorsField(
-					gladiatorsArena,
-					checkedGladiatorsList
-				)
-			}
-
-			return drawCheckedGladiatorsInArena()
+		const addButtonToArenaField = (field) => {
+			const btn = document.createElement("button")
+			btn.setAttribute("class", "strike_btn")
+			btn.innerText = "Strike"
+			field.appendChild(btn)
+			return btn
 		}
 
-		checkGladiatorsBtn.addEventListener("click", checkGladiators)
+		const hitBtn = addButtonToArenaField(arenaField)
+
+		const gladiatorsIndexes = new Array(CHECKED_GLADIATORS).fill(X)
+		const checkedGladiatorsRange = gladiatorsListData.length
+
+		gladiatorsIndexes[X] = REUSABLE.getRandomNumberInRange(
+			X,
+			checkedGladiatorsRange
+		)
+
+		const checkRandomGladiatorsIndexes = () => {
+			gladiatorsIndexes[Y] = REUSABLE.getRandomNumberInRange(
+				X,
+				checkedGladiatorsRange
+			)
+			if (gladiatorsIndexes[X] === gladiatorsIndexes[Y]) {
+				checkRandomGladiatorsIndexes()
+			}
+			return gladiatorsIndexes
+		}
+
+		const checkRandomGladiators = () => {
+			const gladiatorsIndexes = checkRandomGladiatorsIndexes()
+
+			const checkedGladiators = gladiatorsIndexes.map((index, i) => {
+				if (i === X) {
+					gladiatorsListData[index].borderColor = "red"
+				}
+				return gladiatorsListData[index]
+			})
+
+			return checkedGladiators
+		}
+
+		const checkedGladiatorsListData = checkRandomGladiators()
+
+		const drawCheckedGladiatorsInArena = () => {
+			checkedGladiatorsListData.forEach((gladiator) => {
+				const gladiatorCharacter = createCurrentGladiator(
+					gladiator,
+					"current_gladiator"
+				)
+				if (gladiator.borderColor === "red") {
+					gladiatorCharacter.style.border = "1px solid red"
+				}
+				arena.appendChild(gladiatorCharacter)
+			})
+		}
+
+		const hideCheckedGladiatorsFromGladiatorsField = () => {
+			const currentgladiatorsListData =
+				document.getElementsByClassName("gladiator")
+			Array.from(currentgladiatorsListData).forEach((gladiator, i) => {
+				if (i === gladiatorsIndexes[0] || i === gladiatorsIndexes[1]) {
+					gladiator.style.visibility = "hidden"
+				}
+			})
+		}
+
+		const drawArena = drawCheckedGladiatorsInArena()
+
+		hideCheckedGladiatorsFromGladiatorsField()
+
+		const orderOfAction = [
+			[0, 1],
+			[1, 0],
+		]
+
+		const updateGladiatorsInArena = (updatedHealth, todo) => {
+			checkedGladiatorsListData[todo].health = updatedHealth
+
+			const updateGladiators = () => {
+				checkedGladiatorsListData.forEach((gladiator, i) => {
+					const currentGladiatorElements = Array.from(
+						document.getElementsByClassName("current_gladiator")
+					)
+					currentGladiatorElements[todo].remove()
+					const gladiatorCharacter = createCurrentGladiator(
+						gladiator,
+						"current_gladiator"
+					)
+					arena.appendChild(gladiatorCharacter)
+				})
+			}
+
+			updateGladiators()
+		}
+
+		const updateGladiatorsInGladiatorsField = (updatedHealth, todo) => {
+			checkedGladiatorsListData[todo].health = updatedHealth
+
+			const updateGladiators = () => {
+				checkedGladiatorsListData.forEach((gladiator, i) => {
+					const currentGladiatorElements = Array.from(
+						document.getElementsByClassName("current_gladiator")
+					)
+					currentGladiatorElements[todo].remove()
+					const gladiatorCharacter = createCurrentGladiator(
+						gladiator,
+						"current_gladiator"
+					)
+					arena.appendChild(gladiatorCharacter)
+				})
+			}
+
+			updateGladiators()
+		}
+
+		const hitTheGladiator = () => {
+			if (orderOfAction.length !== 0) {
+				const hitter = orderOfAction[0][0]
+				const kiker = orderOfAction[0][1]
+				const updatedGladiatorsHealth =
+					checkedGladiatorsListData[kiker].health -
+					checkedGladiatorsListData[hitter].power
+				updateGladiatorsInArena(updatedGladiatorsHealth, kiker)
+				orderOfAction.shift()
+			}
+		}
+
+		hitBtn.addEventListener("click", hitTheGladiator)
 	}
 
-	form.addEventListener("submit", playGame)
+	checkGladiatorsBtn.addEventListener("click", checkGladiators)
 }
 
-makeGame()
+const newGame = () => {
+	const form = document.querySelector(".form")
+	const input = document.querySelector(".input_gladiator")
+
+	const makeGame = (e) => {
+		e.preventDefault()
+		if (input.value === "") {
+			alert("Please enter number of gladiators !")
+		} else {
+			playGame(input)
+		}
+	}
+
+	form.addEventListener("submit", makeGame)
+}
+
+newGame()
