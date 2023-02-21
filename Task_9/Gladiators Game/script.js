@@ -6,8 +6,9 @@ const POWER_MIN = 5
 const POWER_MAX = 15
 const CHECKED_GLADIATORS = 2
 
-const playGame = (inputElement) => {
-	const container = document.querySelector(".container")
+const playGame = (containerElement, inputElement) => {
+	containerElement.style.background =
+		"url('/image/wallpaper2.png') center / cover no-repeat"
 	const numberOfGladiators = Number(inputElement.value)
 	const gladiatorsInitialList = new Array(numberOfGladiators).fill({})
 
@@ -33,23 +34,12 @@ const playGame = (inputElement) => {
 		if (document.querySelector(".gladiators_field") === null) {
 			const gladiatorsField = document.createElement("div")
 			gladiatorsField.setAttribute("class", "gladiators_field")
-			container.appendChild(gladiatorsField)
+			containerElement.appendChild(gladiatorsField)
 			return gladiatorsField
 		}
 	}
 
-	const createCheckGladiatorsBtn = () => {
-		if (document.querySelector(".check_gladiators") === null) {
-			const btn = document.createElement("button")
-			btn.setAttribute("class", "check_gladiators")
-			btn.innerText = "Check Gladiators"
-			container.appendChild(btn)
-			return btn
-		}
-	}
-
 	const gladiatorsField = createGladiatorField()
-	const checkGladiatorsBtn = createCheckGladiatorsBtn()
 
 	const createCurrentGladiator = (gladiatorsData, divClassName) => {
 		const { name, health, power } = gladiatorsData
@@ -94,16 +84,29 @@ const playGame = (inputElement) => {
 
 	const displayGladiatorsOnScreen = drawGladiatorsInGladiatorsField()
 
-	document.querySelector(".input_gladiator").remove()
-	document.querySelector(".play_game").remove()
+	const createCheckGladiatorsBtn = () => {
+		if (document.querySelector(".check_gladiators") === null) {
+			const btn = document.createElement("button")
+			btn.setAttribute("class", "check_gladiators")
+			btn.innerText = "Check Gladiators"
+			containerElement.appendChild(btn)
+			return btn
+		}
+	}
+
+	const checkGladiatorsBtn = createCheckGladiatorsBtn()
+
+	document.querySelector(".form").remove()
 
 	const checkGladiators = () => {
+		containerElement.style.background =
+			"url('/image/wallpaper3.jpg') center / cover no-repeat"
 		const list = gladiatorsListData.filter((element) => element.health > 0)
 
 		const createArenaField = () => {
 			const field = document.createElement("div")
 			field.setAttribute("class", "arena_field")
-			container.appendChild(field)
+			containerElement.appendChild(field)
 			return field
 		}
 
@@ -227,11 +230,13 @@ const playGame = (inputElement) => {
 		const createWinnerGladiator = () => {
 			const winner = document.createElement("div")
 			winner.setAttribute("class", "winner")
-			container.appendChild(winner)
+			containerElement.appendChild(winner)
 			return winner
 		}
 
 		const showWinnerGladiator = (winner, element) => {
+			containerElement.style.background =
+				"url('/image/wallpaper4.jpg') center / cover no-repeat"
 			const winnerText = document.createElement("h2")
 			winnerText.setAttribute("class", "winnerText")
 			winnerText.innerText = `${winner.name} is Win !`
@@ -286,15 +291,18 @@ const playGame = (inputElement) => {
 }
 
 const newGame = () => {
+	const container = document.querySelector(".container")
 	const form = document.querySelector(".form")
 	const input = document.querySelector(".input_gladiator")
+
+	container.style.opacity = "1"
 
 	const makeGame = (e) => {
 		e.preventDefault()
 		if (input.value === "") {
 			alert("Please enter number of gladiators !")
 		} else {
-			playGame(input)
+			playGame(container, input)
 		}
 	}
 
