@@ -10,17 +10,18 @@ const playGame = (containerElement, inputElement) => {
 	containerElement.style.background =
 		"url('/image/wallpaper2.png') center / cover no-repeat"
 	const numberOfGladiators = Number(inputElement.value)
+
 	const gladiatorsInitialList = new Array(numberOfGladiators).fill({})
 
-	const createGladiatorsListData = () => {
-		const createGladiatorsData = (nameIndex) => {
-			return {
-				name: `gladiator_${nameIndex}`,
-				health: REUSABLE.getRandomNumberInRange(HEALTH_MIN, HEALTH_MAX),
-				power: REUSABLE.getRandomNumberInRange(POWER_MIN, POWER_MAX),
-			}
+	const createGladiatorsData = (nameIndex) => {
+		return {
+			name: `gladiator_${nameIndex}`,
+			health: REUSABLE.getRandomNumberInRange(HEALTH_MIN, HEALTH_MAX),
+			power: REUSABLE.getRandomNumberInRange(POWER_MIN, POWER_MAX),
 		}
+	}
 
+	const createGladiatorsListData = () => {
 		const gladiatorsList = gladiatorsInitialList.map((gladiator, index) => {
 			return createGladiatorsData(index)
 		})
@@ -99,101 +100,63 @@ const playGame = (containerElement, inputElement) => {
 	document.querySelector(".form").remove()
 
 	const checkGladiators = () => {
-		containerElement.style.background =
-			"url('/image/wallpaper3.jpg') center / cover no-repeat"
-		const list = gladiatorsListData.filter((element) => element.health > 0)
+		if (document.querySelector(".arena_field") === null) {
+			containerElement.style.background =
+				"url('/image/wallpaper3.jpg') center / cover no-repeat"
+			const list = gladiatorsListData.filter((element) => element.health > 0)
 
-		const createArenaField = () => {
-			const field = document.createElement("div")
-			field.setAttribute("class", "arena_field")
-			containerElement.appendChild(field)
-			return field
-		}
-
-		const arenaField = createArenaField()
-
-		const createArena = () => {
-			const arena = document.createElement("div")
-			arena.setAttribute("class", "arena")
-			arenaField.appendChild(arena)
-			return arena
-		}
-
-		const arena = createArena()
-
-		const addButtonToArenaField = (field) => {
-			const btn = document.createElement("button")
-			btn.setAttribute("class", "strike_btn")
-			btn.innerText = "Strike"
-			field.appendChild(btn)
-			return btn
-		}
-
-		const hitBtn = addButtonToArenaField(arenaField)
-
-		const gladiatorsIndexes = new Array(CHECKED_GLADIATORS).fill(X)
-		const checkedGladiatorsRange = gladiatorsListData.length
-
-		const checkRandomGladiatorsIndexes = (range) => {
-			gladiatorsIndexes[X] = REUSABLE.getRandomNumberInRange(X, range)
-			gladiatorsIndexes[Y] = REUSABLE.getRandomNumberInRange(X, range)
-			if (gladiatorsIndexes[X] === gladiatorsIndexes[Y]) {
-				checkRandomGladiatorsIndexes(range)
+			const createArenaField = () => {
+				const field = document.createElement("div")
+				field.setAttribute("class", "arena_field")
+				containerElement.appendChild(field)
+				return field
 			}
-			return gladiatorsIndexes
-		}
 
-		const checkRandomGladiators = () => {
-			const gladiatorsIndexes = checkRandomGladiatorsIndexes(list.length)
-			const checkedGladiators = gladiatorsIndexes.map((index, i) => {
-				return list[index]
-			})
-			return checkedGladiators
-		}
+			const arenaField = createArenaField()
 
-		const checkedGladiatorsListData = checkRandomGladiators()
+			const createArena = () => {
+				const arena = document.createElement("div")
+				arena.setAttribute("class", "arena")
+				arenaField.appendChild(arena)
+				return arena
+			}
 
-		const drawCheckedGladiatorsInArena = () => {
-			checkedGladiatorsListData.forEach((gladiator) => {
-				const gladiatorCharacter = createCurrentGladiator(
-					gladiator,
-					"current_gladiator"
-				)
-				if (gladiator.borderColor === "red") {
-					gladiatorCharacter.style.border = "1px solid red"
+			const arena = createArena()
+
+			const addButtonToArenaField = (field) => {
+				const btn = document.createElement("button")
+				btn.setAttribute("class", "strike_btn")
+				btn.innerText = "Strike"
+				field.appendChild(btn)
+				return btn
+			}
+
+			const hitBtn = addButtonToArenaField(arenaField)
+
+			const gladiatorsIndexes = new Array(CHECKED_GLADIATORS).fill(X)
+			const checkedGladiatorsRange = gladiatorsListData.length
+
+			const checkRandomGladiatorsIndexes = (range) => {
+				gladiatorsIndexes[X] = REUSABLE.getRandomNumberInRange(X, range)
+				gladiatorsIndexes[Y] = REUSABLE.getRandomNumberInRange(X, range)
+				if (gladiatorsIndexes[X] === gladiatorsIndexes[Y]) {
+					checkRandomGladiatorsIndexes(range)
 				}
-				arena.appendChild(gladiatorCharacter)
-			})
-		}
+				return gladiatorsIndexes
+			}
 
-		const hideCheckedGladiatorsFromGladiatorsField = () => {
-			const currentgladiatorsListData =
-				document.getElementsByClassName("gladiator")
-			Array.from(currentgladiatorsListData).forEach((gladiator, i) => {
-				if (i === gladiatorsIndexes[0] || i === gladiatorsIndexes[1]) {
-					gladiator.style.visibility = "hidden"
-				}
-			})
-		}
+			const checkRandomGladiators = () => {
+				const gladiatorsIndexes = checkRandomGladiatorsIndexes(list.length)
+				const checkedGladiators = gladiatorsIndexes.map((index, i) => {
+					return list[index]
+				})
+				return checkedGladiators
+			}
 
-		const drawArena = drawCheckedGladiatorsInArena()
+			const checkedGladiatorsListData = checkRandomGladiators()
 
-		hideCheckedGladiatorsFromGladiatorsField()
-
-		const orderOfAction = [
-			[0, 1],
-			[1, 0],
-		]
-
-		const updateGladiatorsInArena = (updatedHealth, gladiatorsIndex) => {
-			checkedGladiatorsListData[gladiatorsIndex].health = updatedHealth
-
-			const updateGladiators = () => {
-				checkedGladiatorsListData.forEach((gladiator, i) => {
-					const currentGladiatorElements = Array.from(
-						document.getElementsByClassName("current_gladiator")
-					)
-					currentGladiatorElements[gladiatorsIndex].remove()
+			const drawCheckedGladiatorsInArena = () => {
+				checkedGladiatorsListData.forEach((gladiator) => {
 					const gladiatorCharacter = createCurrentGladiator(
 						gladiator,
 						"current_gladiator"
@@ -205,86 +168,127 @@ const playGame = (containerElement, inputElement) => {
 				})
 			}
 
-			updateGladiators()
-		}
+			const hideCheckedGladiatorsFromGladiatorsField = () => {
+				const currentgladiatorsListData =
+					document.getElementsByClassName("gladiator")
+				Array.from(currentgladiatorsListData).forEach((gladiator, i) => {
+					if (i === gladiatorsIndexes[0] || i === gladiatorsIndexes[1]) {
+						gladiator.style.visibility = "hidden"
+					}
+				})
+			}
 
-		const updateGladiatorsListData = () => {
-			const list = gladiatorsListData.filter((element) => element.health > 0)
-			list.forEach((gladiator) => {
-				const gladiatorCharacter = createCurrentGladiator(
-					gladiator,
-					"gladiator"
-				)
-				gladiatorsField.appendChild(gladiatorCharacter)
-			})
-			return list
-		}
+			const drawArena = drawCheckedGladiatorsInArena()
 
-		const countGladiatorsHealth = (hiter, kiker) => {
-			const updatedGladiatorsHealth =
-				checkedGladiatorsListData[kiker].health -
-				checkedGladiatorsListData[hiter].power
-			return updatedGladiatorsHealth
-		}
+			hideCheckedGladiatorsFromGladiatorsField()
 
-		const createWinnerGladiator = () => {
-			const winner = document.createElement("div")
-			winner.setAttribute("class", "winner")
-			containerElement.appendChild(winner)
-			return winner
-		}
+			const orderOfAction = [
+				[0, 1],
+				[1, 0],
+			]
 
-		const showWinnerGladiator = (winner, element) => {
-			containerElement.style.background =
-				"url('/image/wallpaper4.jpg') center / cover no-repeat"
-			const winnerText = document.createElement("h2")
-			winnerText.setAttribute("class", "winnerText")
-			winnerText.innerText = `${winner.name} is Win !`
-			element.appendChild(winnerText)
-		}
+			const updateGladiatorsInArena = (updatedHealth, gladiatorsIndex) => {
+				checkedGladiatorsListData[gladiatorsIndex].health = updatedHealth
 
-		const updateGladiatorsField = () => {
-			setTimeout(() => {
-				if (document.getElementsByClassName("gladiator") !== null) {
-					const gladiatorElements = Array.from(
-						document.getElementsByClassName("gladiator")
-					)
-					gladiatorElements.forEach((element) => {
-						return element.remove()
+				const updateGladiators = () => {
+					checkedGladiatorsListData.forEach((gladiator, i) => {
+						const currentGladiatorElements = Array.from(
+							document.getElementsByClassName("current_gladiator")
+						)
+						currentGladiatorElements[gladiatorsIndex].remove()
+						const gladiatorCharacter = createCurrentGladiator(
+							gladiator,
+							"current_gladiator"
+						)
+						if (gladiator.borderColor === "red") {
+							gladiatorCharacter.style.border = "1px solid red"
+						}
+						arena.appendChild(gladiatorCharacter)
 					})
 				}
-				const updatedList = updateGladiatorsListData()
-				document.querySelector(".arena_field").remove()
-				document.querySelector("body").style.background =
-					"url('/image/background-wallpaper2.jpg') center / cover no-repeat"
-				if (updatedList.length === 1) {
-					document.querySelector(".check_gladiators").remove()
-					document.querySelector(".gladiators_field").remove()
-					const winner = createWinnerGladiator()
-					showWinnerGladiator(updatedList[X], winner)
+
+				updateGladiators()
+			}
+
+			const updateGladiatorsListData = () => {
+				const list = gladiatorsListData.filter((element) => element.health > 0)
+				list.forEach((gladiator) => {
+					const gladiatorCharacter = createCurrentGladiator(
+						gladiator,
+						"gladiator"
+					)
+					gladiatorsField.appendChild(gladiatorCharacter)
+				})
+				return list
+			}
+
+			const countGladiatorsHealth = (hiter, kiker) => {
+				const updatedGladiatorsHealth =
+					checkedGladiatorsListData[kiker].health -
+					checkedGladiatorsListData[hiter].power
+				return updatedGladiatorsHealth
+			}
+
+			const createWinnerGladiator = () => {
+				const winner = document.createElement("div")
+				winner.setAttribute("class", "winner")
+				containerElement.appendChild(winner)
+				return winner
+			}
+
+			const showWinnerGladiator = (winner, element) => {
+				containerElement.style.background =
+					"url('/image/wallpaper4.jpg') center / cover no-repeat"
+				const winnerText = document.createElement("h2")
+				winnerText.setAttribute("class", "winnerText")
+				winnerText.innerText = `${winner.name} is Win !`
+				element.appendChild(winnerText)
+			}
+
+			const updateGladiatorsField = () => {
+				setTimeout(() => {
+					if (document.getElementsByClassName("gladiator") !== null) {
+						const gladiatorElements = Array.from(
+							document.getElementsByClassName("gladiator")
+						)
+						gladiatorElements.forEach((element) => {
+							return element.remove()
+						})
+					}
+					const updatedList = updateGladiatorsListData()
+					document.querySelector(".arena_field").remove()
+					document.querySelector("body").style.background =
+						"url('/image/background-wallpaper2.jpg') center / cover no-repeat"
+					if (updatedList.length === 1) {
+						document.querySelector(".check_gladiators").remove()
+						document.querySelector(".gladiators_field").remove()
+						const winner = createWinnerGladiator()
+						showWinnerGladiator(updatedList[X], winner)
+					}
+				}, 1000)
+			}
+
+			const hitTheGladiator = () => {
+				if (
+					orderOfAction.length !== 0 &&
+					checkedGladiatorsListData[Y].health > 0
+				) {
+					const hitersIndex = orderOfAction[0][0]
+					const kikersIndex = orderOfAction[0][1]
+					const updatedHealth = countGladiatorsHealth(hitersIndex, kikersIndex)
+					updateGladiatorsInArena(updatedHealth, kikersIndex)
+					if (checkedGladiatorsListData[Y].health < 0) {
+						updateGladiatorsField()
+					}
+					orderOfAction.shift()
 				}
-			}, 1000)
-		}
-
-		const hitTheGladiator = () => {
-			if (
-				orderOfAction.length !== 0 &&
-				checkedGladiatorsListData[Y].health > 0
-			) {
-				const hitersIndex = orderOfAction[0][0]
-				const kikersIndex = orderOfAction[0][1]
-				const updatedHealth = countGladiatorsHealth(hitersIndex, kikersIndex)
-				updateGladiatorsInArena(updatedHealth, kikersIndex)
-				orderOfAction.shift()
-			} else {
-				updateGladiatorsField()
+				if (orderOfAction.length === 0) {
+					updateGladiatorsField()
+				}
 			}
-			if (orderOfAction.length === 0) {
-				updateGladiatorsField()
-			}
-		}
 
-		hitBtn.addEventListener("click", hitTheGladiator)
+			hitBtn.addEventListener("click", hitTheGladiator)
+		}
 	}
 
 	checkGladiatorsBtn.addEventListener("click", checkGladiators)
