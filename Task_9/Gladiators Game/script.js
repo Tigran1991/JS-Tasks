@@ -277,7 +277,7 @@ const playGame = (containerElement, inputElement) => {
 					const kikersIndex = orderOfAction[0][1]
 					const updatedHealth = countGladiatorsHealth(hitersIndex, kikersIndex)
 					updateGladiatorsInArena(updatedHealth, kikersIndex)
-					if (checkedGladiatorsListData[Y].health < 0) {
+					if (checkedGladiatorsListData[Y].health <= 0) {
 						updateGladiatorsField()
 					}
 					orderOfAction.shift()
