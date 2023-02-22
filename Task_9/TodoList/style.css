@@ -11,40 +11,63 @@
 	justify-content: space-between;
 	width: 60%;
 	height: 100vh;
-	background-color: green;
 	margin: 0 auto;
+	border: 1px solid #333;
 }
 
-.create_task {
+.form {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 	width: 100%;
 	height: 10%;
-	background-color: #333;
 }
 
-.enter_task {
+.form__input {
 	outline: none;
 }
 
-.execution_subject {
+.execution-tasks {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
 	height: 45%;
+	border: 1px solid #333;
 }
 
-.task_div {
+.execution-tasks__list {
+	list-style-type: none;
+}
+
+.task {
 	display: flex;
 	flex-direction: row;
-	width: fit-content;
-	height: fit-content;
 }
 
-.completed_tasks {
+.task-text__div {
+	display: flex;
+	justify-content: center;
+	width: 100px;
+	height: fit-content;
+	border: 1px solid #333;
+}
+
+.completed-tasks {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	width: 100%;
 	height: 45%;
+	border: 1px solid #333;
+}
+
+.completed-tasks__list {
+	list-style-type: none;
+}
+
+.completed-task {
+	display: flex;
+	flex-direction: row;
 }

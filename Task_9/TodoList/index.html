@@ -9,17 +9,18 @@
 	</head>
 	<body>
 		<div class="container">
-			<div class="create_task">
-				<form action="" class="form">
-					<input type="text" name="task" class="enter_task" />
-					<button type="submit" class="add_task">Add Task</button>
-				</form>
+			<form action="" class="form">
+				<input type="text" name="task text" class="form__input" />
+				<button type="submit" class="form__submit">Add Task</button>
+			</form>
+			<div class="execution-tasks">
+				<ul class="execution-tasks__list"></ul>
 			</div>
-			<div class="execution_subject">
-				<ul class="tasks_list"></ul>
+			<div class="completed-tasks">
+				<ul class="completed-tasks__list"></ul>
 			</div>
-			<div class="completed_tasks"></div>
 		</div>
 		<script src="script.js"></script>
+		<script src="utils.js"></script>
 	</body>
 </html>

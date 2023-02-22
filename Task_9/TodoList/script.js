@@ -1,42 +1,131 @@
-const executionSubject = document.querySelector(".execution_subject")
-const tasksListElement = document.querySelector(".tasks_list")
+const container = document.querySelector(".container")
+const input = document.querySelector(".form__input")
+const addTaskBtn = document.querySelector(".form__submit")
+const executionTasks = document.querySelector(".execution-tasks")
+const executionTasksList = document.querySelector(".execution-tasks__list")
+const completedTasksList = document.querySelector(".completed-tasks__list")
 
-const deleteCheckedTask = (e) => {
-	console.log(e.target.parentNode.id)
-	document.getElementById(`${e.target.parentNode.id}`).remove()
-}
+const list = []
 
-const createTaskDiv = (task) => {
-	const taskDiv = document.createElement("li")
-	taskDiv.setAttribute("class", "task_div")
-	taskDiv.setAttribute("id", `${task.id}`)
-	taskDiv.innerHTML = `
-        <h3 class="task_text">${task.text}</h3>
-        <button class="done">Done</button>
-        <button class="delete">Delete</button>
+const createTaskElement = (taskObj) => {
+	const { id, text } = taskObj
+	const taskElement = document.createElement("li")
+	taskElement.classList.add("task")
+	taskElement.setAttribute("id", id)
+	taskElement.innerHTML = `
+		<div class="task-text__div">
+			<h3 class='task__text'>${text}</h3>
+		</div>
+		<button class='task__done'>Done</button>
+        <button class='task__delete'>Delete</button>
     `
-	tasksListElement.appendChild(taskDiv)
-	tasksListElement.addEventListener("click", deleteCheckedTask)
+	executionTasksList.appendChild(taskElement)
 }
 
-const addTask = (e, list) => {
+const createCompletedTaskElement = (taskObj) => {
+	const { id, text } = taskObj
+	const completedtaskElement = document.createElement("li")
+	completedtaskElement.classList.add("completed-task")
+	completedtaskElement.setAttribute("id", id)
+	completedtaskElement.innerHTML = `
+		<div class="task-text__div">
+			<h3 class='task__text'>${text}</h3>
+		</div>
+        <button class='task__delete'>Delete</button>
+    `
+	completedTasksList.appendChild(completedtaskElement)
+}
+
+const createTodoList = (e) => {
 	e.preventDefault()
 
-	const input = document.querySelector(".enter_task")
-	const taskText = input.value
+	const tasksText = input.value
 
-	return createTaskDiv({
-		id: Math.floor(Math.random() * 10000),
-		text: taskText,
-		status: "not done",
-	})
+	const createListOfTasks = () => {
+		list.push({
+			id: `task-${utils.generateRandomId()}`,
+			text: tasksText,
+			status: "not done",
+		})
+
+		return list
+	}
+
+	const listOfTasks = createListOfTasks()
+
+	const addTasksToExecutionTasks = () => {
+		const executionTasksListItems = Array.from(
+			document.getElementsByClassName("task")
+		)
+		if (executionTasksListItems.length !== 0) {
+			executionTasksListItems.forEach((item) => item.remove())
+		}
+		listOfTasks.forEach((task) => {
+			if (task.status === "not done") {
+				createTaskElement(task)
+			}
+		})
+	}
+
+	const drawExecutionTasksList = addTasksToExecutionTasks()
+
+	input.value = ""
+
+	const deleteTaskBtns = Array.from(
+		document.getElementsByClassName("task__delete")
+	)
+
+	const deleteCheckedTask = (e) => {
+		document.getElementById(`${e.target.parentNode.id}`).remove()
+	}
+
+	const addEventListenerToDeleteTaskBtns = () => {
+		deleteTaskBtns.forEach((btn) =>
+			btn.addEventListener("click", deleteCheckedTask)
+		)
+	}
+
+	addEventListenerToDeleteTaskBtns()
+
+	const changeTaskStatusBtns = Array.from(
+		document.getElementsByClassName("task__done")
+	)
+
+	const addTasksToCompletedTasks = (e) => {
+		const completedTasksListItems = Array.from(
+			document.getElementsByClassName("completed-task")
+		)
+		if (completedTasksListItems.length !== 0) {
+			completedTasksListItems.forEach((item) => item.remove())
+		}
+		const listOfCompletedTasks = listOfTasks.filter((task) => {
+			if (task.status === "done") {
+				return task
+			}
+		})
+		listOfCompletedTasks.forEach((task) => {
+			createCompletedTaskElement(task)
+		})
+	}
+
+	const changeTaskListStatus = (e) => {
+		const changingTaskId = e.target.parentElement.id
+		listOfTasks.forEach((task) => {
+			if (task.id === changingTaskId) {
+				task.status = "done"
+			}
+		})
+
+		const drawCompletedTasks = addTasksToCompletedTasks(e)
+	}
+
+	const addEventListenerToChangeTaskStatusBtns = () => {
+		changeTaskStatusBtns.forEach((btn) =>
+			btn.addEventListener("click", changeTaskListStatus)
+		)
+	}
+
+	addEventListenerToChangeTaskStatusBtns()
 }
 
-const todo = () => {
-	const addTaskBtn = document.querySelector(".add_task")
-	const taskList = []
-
-	addTaskBtn.addEventListener("click", (e) => addTask(e, taskList))
-}
-
-todo()
+addTaskBtn.addEventListener("click", createTodoList)
