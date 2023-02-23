@@ -1,30 +1,28 @@
 // 1․ Տրված են երկու թվեր, տպեք դրանցից մեծը
 
-// let num1 = 1
-// let num2 = 2
+// const num1 = 1
+// const num2 = 2
 
 // let max = Math.max(num1, num2)
 // console.log(max)
 
 // 2․ Տրված է բնական թիվ։ Ստուգեք արդյոք վերջին թվանշանը 2 է։
 
-// let num = 22
+// const num = 22
 // let lastDigit = num % 10
 
 // if (lastDigit === 2) {
-// 	console.log(true)
+// 	console.log("True, last digit is 2")
 // } else {
-// 	console.log(false)
+// 	console.log("False, last digit is not 2")
 // }
 
-// 3․ Տրված է երկու հեռավորություն, մեկը կիլոմետրով, մյուսը մետրով։ Գտեք որն է ավելի մեծ։
+// 3․ Տրված է երկու հեռավորություն, մեկը կիլոմետրով, մյուսը մետրով։ Գտեք որն է ավելի մեծ։ // is incomplete
 
-// let distanceByKilometr = 2
-// let distanceByMeter = 400
-// let smallestUnit = 1
+// const distanceByKilometr = 2
+// const distanceByMeter = 400
 
-// distanceByKilometr = 2000 * smallestUnit
-// distanceByMeter = 400 * smallestUnit
+// const kilometerByMeter = distanceByKilometr * 1000
 
 arr = [1, 3, 7, 5, 9, 8, 1, 9, 10, 11, 45]
 
@@ -38,27 +36,20 @@ arr = [1, 3, 7, 5, 9, 8, 1, 9, 10, 11, 45]
 
 // 6․ Գտնել զանգվածի բոլոր թվերի գումարը
 
-// let sum = 0
+// const sum = arr.reduce((acc, el) => acc + el, 0)
 
-// arr.forEach((element, i) => {
-// 	sum += element
-// 	if (i === arr.length - 1) {
-// 		return console.log(sum)
-// 	}
-// })
+// console.log(sum)
 
 // 7․ Գտնել թե քանի 1 կա զանգվածում
 
-// let count = 0
+// const countOfOne = arr.reduce((acc, el, i) => {
+// 	if (el === 1) {
+// 		return acc + 1
+// 	}
+// 	return acc
+// }, 0)
 
-// arr.forEach((element, i) => {
-// 	if (element === 1) {
-// 		count++
-// 	}
-// 	if (i === arr.length - 1) {
-// 		return console.log(count)
-// 	}
-// })
+// console.log(countOfOne)
 
 // 8․ Գտնել զույգ թվերի քանակը
 
@@ -180,6 +171,7 @@ arr = ["Hello", 15, "World", true, 89, 157, [1, 3, 7]]
 // 	(acc, current) => acc + current,
 // 	0
 // )
+
 // console.log(sumOfArrayLastElementItems)
 
 // 19․ Տպել միայն զույգ ինդեքս ունեցող անդամները
@@ -190,7 +182,7 @@ arr = ["Hello", 15, "World", true, 89, 157, [1, 3, 7]]
 // 	}
 // })
 
-// 20. 20․ Օգտատերը ներմուծում է թիվ։ ներմուծված թվին համապատասխան տպել Ամիսը։ Չօգտագործել if
+// 20․ Օգտատերը ներմուծում է թիվ։ ներմուծված թվին համապատասխան տպել Ամիսը։ Չօգտագործել if
 
 // const number = prompt("Enter number")
 
@@ -255,7 +247,7 @@ arr = ["Hello", 15, "World", true, 89, 157, [1, 3, 7]]
 // enterNumbersToArray()
 
 // 22. Տրված են 2 զանգվածներ։ Համեմատել նրանց
-//ա) երկարությունը և տպել առաջինն է մեծ թե երկրորդը
+// ա) երկարությունը և տպել առաջինն է մեծ թե երկրորդը
 
 // const arr1 = [1, 2, 3, 4]
 // const arr2 = [1, 2, 3, 4, 5, 6]
@@ -270,7 +262,7 @@ arr = ["Hello", 15, "World", true, 89, 157, [1, 3, 7]]
 
 // compareArrayLengths(arr1, arr2)
 
-//բ) էլեմենտների գումարը և տպել առաջինն է մեծ թե երկրորդը
+// բ) էլեմենտների գումարը և տպել առաջինն է մեծ թե երկրորդը
 
 // const compareSumOfArrayElements = () => {
 // 	const arr1 = [1, 2, 3, 4]
