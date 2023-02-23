@@ -1,14 +1,14 @@
-// 7.
+// 7.	Declare variable. Initialize it with the value, which shows temperature in degrees Celsius. Print its equivalent in degrees Fahrenheit. To convert temperatures 	in degrees Celsius to Fahrenheit use the following formula: °C * 1.8 +32 = °F .
 
-// let temperatureInCelsius = prompt("What is temperature now in Celsius?")
-// let temperatureInFahrenheit = temperatureInCelsius * 1.8 + 32
+// const temperatureInCelsius = prompt("What is temperature now in Celsius?")
+// const temperatureInFahrenheit = temperatureInCelsius * 1.8 + 32
 // console.log("Temperature in Celsius", temperatureInCelsius)
 // console.log("Temperature in Fahrenheit", temperatureInFahrenheit.toString())
 
-//8.
+// 8.	Given two numbers print 1 if one of them is divisible by the other one, otherwise print 0.
 
-// let num1 = prompt("First number is ")
-// let num2 = prompt("Second number is ")
+// const num1 = prompt("First number is ")
+// const num2 = prompt("Second number is ")
 
 // if (num1 % num2 === 0 || num2 % num1 === 0) {
 // 	alert(1)
@@ -16,82 +16,83 @@
 // 	alert(0)
 // }
 
-// 9.
+// 9.	Given three numbers. Find the maximum one.
 
-// let num1 = 1
-// let num2 = 2
-// let num3 = 3
+// const num1 = 1
+// const num2 = 2
+// const num3 = 3
 
-// let max = Math.max(num1, num2, num3)
+// const max = Math.max(num1, num2, num3)
 // console.log(max)
 
-// 14.
+// 14.  	Print all numbers between 1 and 10.
 
-// let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+// const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 // numbers.forEach((number) => console.log(number))
 
-// 15.
+// 15.	Print all numbers between 1 and 10 except 6.
 
-// let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+// const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 // numbers.forEach((number) => {
 // 	if (number !== 6) console.log(number)
 // })
 
-// 16.
+// 16.	Print all even numbers between 1 and 10.
 
-// let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+// const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 // numbers.forEach((number) => {
 // 	if (number % 2 === 0) console.log(number)
 // })
 
-// 17.
+// 17.	Calculate the sum of all numbers between 1 and 10 (using loop).
 
-// let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+// const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-// let initialSum = 0
+// const sum = numbers.reduce((acc, el) => acc + el, 0)
 
-// for (let i = 0; i < numbers.length; i++) {
-// 	initialSum += numbers[i]
-// 	if (i === numbers.length - 1) console.log(initialSum)
-// }
+// console.log(sum)
 
-// 18.
+// 18.	Calculate the sum of all numbers between 1 and 10 except 8.
 
-// let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+// const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-// let initialSum = 0
+// const sum = numbers.reduce((acc, el) => {
+// 	if (el !== 8) {
+// 		return acc + el
+// 	}
+// 	return acc
+// }, 0)
 
-// for (let i = 0; i < numbers.length; i++) {
-// 	if (numbers[i] !== 8) initialSum += numbers[i]
-// 	if (i === numbers.length - 1) console.log(initialSum)
-// }
+// console.log(sum)
 
-// 19.
+// 19.	Calculate the sum of all odd numbers between 1 and 10.
 
-// let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+// const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-// let initialSum = 0
+// const sumOfOddNumbers = numbers.reduce((acc, number) => {
+// 	if (number % 2 !== 0) {
+// 		return acc + number
+// 	}
+// 	return acc
+// }, 0)
 
-// for (let i = 0; i < numbers.length; i++) {
-// 	if (numbers[i] % 2 !== 0) initialSum += numbers[i]
-// 	if (i === numbers.length - 1) console.log(initialSum)
-// }
+// console.log(sumOfOddNumbers)
 
-// 20.
+// 20.	Calculate the sum of squares of all numbers between 1 and 10.
 
-// let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+// const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-// let initialSum = 0
+// const sumOfNumberSquare = numbers.reduce(
+// 	(acc, number) => acc + Math.pow(number, 2),
+// 	0
+// )
 
-// for (let i = 0; i < numbers.length; i++) {
-// 	initialSum += Math.pow(numbers[i], 2)
-// 	if (i === numbers.length - 1) console.log(initialSum)
-// }
+// console.log(sumOfNumberSquare)
 
-// 22.
+// 22.	Given five numbers as input. Calculate and print the average of the numbers.
 
 // const numbers = [1, 2, 3, 4, 5]
 

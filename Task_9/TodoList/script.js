@@ -75,9 +75,7 @@ const createTodoList = (e) => {
 		document.getElementsByClassName("task__delete")
 	)
 
-	const deleteCheckedTask = (e) => {
-		document.getElementById(`${e.target.parentNode.id}`).remove()
-	}
+	const deleteCheckedTask = (e) => {}
 
 	const addEventListenerToDeleteTaskBtns = () => {
 		deleteTaskBtns.forEach((btn) =>
