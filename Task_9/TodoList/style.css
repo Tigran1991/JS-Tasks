@@ -121,4 +121,7 @@
 .completed-task {
 	display: flex;
 	flex-direction: row;
+	justify-content: space-between;
+	width: 150px;
+	margin-top: 10px;
 }

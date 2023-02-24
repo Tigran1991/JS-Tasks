@@ -1,25 +1,9 @@
 const createTodoList = () => {
 	const formInput = document.querySelector(".form__input")
 	const formSubmitBtn = document.querySelector(".form__submit")
-	const executionTasks = document.querySelector(".execution-tasks")
-	const completedTasks = document.querySelector(".completed-tasks")
 
 	const initialListOfTasks = new Array(0)
 	const listOfCompletedTasks = new Array(0)
-
-	const addEmptyDescriptionForExecutionList = () => {
-		const empty = document.createElement("h4")
-		empty.setAttribute("class", "empty execution-tasks__empty")
-		empty.innerText = "Execution List is empty"
-		executionTasks.appendChild(empty)
-	}
-
-	const addEmptyDescriptionForCompletedList = () => {
-		const empty = document.createElement("h4")
-		empty.setAttribute("class", "empty completed-tasks__empty")
-		empty.innerText = "Completed List is empty"
-		completedTasks.appendChild(empty)
-	}
 
 	const addTaskToTodoList = (e) => {
 		e.preventDefault()
@@ -47,13 +31,13 @@ const createTodoList = () => {
 		}
 
 		const deleteSelectedTask = (e) => {
+			debugger
 			const index = listOfTasks.findIndex(
 				(task) => task.id === e.target.parentNode.id
 			)
 			listOfTasks.splice(index, 1)
 
 			drawExecutionTasksList(listOfTasks)
-			drawCompletedTasksList(listOfCompletedTasks)
 		}
 
 		const deleteSelectedTaskFromCompletedList = (e) => {
@@ -105,34 +89,14 @@ const createTodoList = () => {
 		}
 
 		const drawCompletedTasksList = (list) => {
-			if (
-				document.querySelector(".completed-tasks__empty") !== null &&
-				list.length > 0
-			) {
-				document.querySelector(".completed-tasks__empty").remove()
-			} else if (
-				document.querySelector(".completed-tasks__empty") === null &&
-				list.length === 0
-			) {
-				addEmptyDescriptionForCompletedList()
-			}
+			utils.checkForEmpty(list, "completed-tasks__empty")
 			utils.deleteCurrentCompletedTasksList()
 			createCompletedTasksListElements(list)
 			addEventListenerToDeleteButton()
 		}
 
 		const drawExecutionTasksList = (list) => {
-			if (
-				document.querySelector(".execution-tasks__empty") !== null &&
-				list.length > 0
-			) {
-				document.querySelector(".execution-tasks__empty").remove()
-			} else if (
-				document.querySelector(".execution-tasks__empty") === null &&
-				list.length === 0
-			) {
-				addEmptyDescriptionForExecutionList()
-			}
+			utils.checkForEmpty(list, "execution-tasks__empty")
 			utils.deleteCurrentExecutionTasksList()
 			createExecutionTasksListElements(list)
 			addEvenetListeneresToButtons()

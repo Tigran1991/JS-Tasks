@@ -1,3 +1,5 @@
+const executionTasks = document.querySelector(".execution-tasks")
+const completedTasks = document.querySelector(".completed-tasks")
 const executionTasksList = document.querySelector(".execution-tasks__list")
 const completedTasksList = document.querySelector(".completed-tasks__list")
 
@@ -28,7 +30,7 @@ const utils = {
 			<div class="task-text__div">
 				<h3 class='task__text'>${taskText}</h3>
 			</div>
-			<button class='task__delete'>Delete</button>
+			<button class='task__delete'><i class="fa-regular fa-trash-can"></i></button>
 		`
 		completedTasksList.appendChild(completedtaskElement)
 	},
@@ -48,6 +50,41 @@ const utils = {
 		)
 		if (executionTasksListElements.length !== 0) {
 			executionTasksListElements.forEach((element) => element.remove())
+		}
+	},
+
+	addEmptyDescriptionForExecutionList: () => {
+		const empty = document.createElement("h4")
+		empty.setAttribute("class", "empty")
+		empty.setAttribute("id", "execution-tasks__empty")
+		empty.innerText = "Execution List is empty"
+		executionTasks.appendChild(empty)
+	},
+
+	addEmptyDescriptionForCompletedList: () => {
+		const empty = document.createElement("h4")
+		empty.setAttribute("class", "empty")
+		empty.setAttribute("id", "completed-tasks__empty")
+		empty.innerText = "Completed List is empty"
+		completedTasks.appendChild(empty)
+	},
+
+	selectArea: (id) => {
+		if (id === "execution-tasks__empty") {
+			utils.addEmptyDescriptionForExecutionList()
+		} else if (id === "completed-tasks__empty") {
+			utils.addEmptyDescriptionForCompletedList()
+		}
+	},
+
+	checkForEmpty: (list, elementsId) => {
+		if (document.getElementById(elementsId) !== null && list.length > 0) {
+			document.getElementById(elementsId).remove()
+		} else if (
+			document.getElementById(elementsId) === null &&
+			list.length === 0
+		) {
+			utils.selectArea(elementsId)
 		}
 	},
 }
