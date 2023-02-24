@@ -31,7 +31,6 @@ const createTodoList = () => {
 		}
 
 		const deleteSelectedTask = (e) => {
-			debugger
 			const index = listOfTasks.findIndex(
 				(task) => task.id === e.target.parentNode.id
 			)
