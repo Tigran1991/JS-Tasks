@@ -43,6 +43,7 @@
 // }
 
 // console.log(checkIsItPrimeNumber(3))
+// console.log(checkIsItPrimeNumber(4))
 
 // 3․ Գրել ֆունկցիա, որը կտպի True, եթե լիստի բոլոր էլեմենտները 1 կամ 4 են։ Հակառակ դեպքում տպել False:
 
@@ -63,6 +64,7 @@
 // }
 
 // console.log(isAllNumbersOneOrFour([1, 1, 4, 4]))
+// console.log(isAllNumbersOneOrFour([0, 1, 4, 4]))
 
 // 4. Ստեղծել ֆունկցիա, որը կստեղծի և կտպի լիստ, որի արժեքները [1, 30] միջակայքում գտնվող թվերի քառակուսիներն են
 
@@ -81,11 +83,10 @@
 // 5․ Ստեղծել ֆունկցիա, որը կվերցնի մեկ արգումենտ՝ n: Վերադարձնել n երկարությամբ լիստ, որը կպարունակի (-100, 400) միջակայքում գտնվող պատահական թվեր։
 
 // const generateListOfRandomNumbers = (n) => {
-//     const list = []
+// 	const list = []
 
-// 	const getRandomNumberInRange = (min, max) => {
-// 		return Math.floor(Math.random() * (max - min) + min)
-// 	}
+// 	const getRandomNumberInRange = (min, max) =>
+// 		Math.floor(Math.random() * (max - min) + min)
 
 // 	const addRandomNumbersToList = () => {
 // 		for (let i = 0; i < n; i++) {
@@ -105,7 +106,7 @@
 // const sumNumbersOfList = (numbers) => {
 // 	let sum = 0
 // 	for (let i = 0; i < numbers.length; i++) {
-// 		let currentNumber = numbers[i]
+// 		const currentNumber = numbers[i]
 // 		if (currentNumber !== 13) sum += currentNumber
 // 		else break
 // 	}
