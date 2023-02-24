@@ -1,11 +1,25 @@
 const createTodoList = () => {
 	const formInput = document.querySelector(".form__input")
 	const formSubmitBtn = document.querySelector(".form__submit")
-	const executionTasksList = document.querySelector(".execution-tasks__list")
-	const completedTasksList = document.querySelector(".completed-tasks__list")
+	const executionTasks = document.querySelector(".execution-tasks")
+	const completedTasks = document.querySelector(".completed-tasks")
 
 	const initialListOfTasks = new Array(0)
 	const listOfCompletedTasks = new Array(0)
+
+	const addEmptyDescriptionForExecutionList = () => {
+		const empty = document.createElement("h4")
+		empty.setAttribute("class", "empty execution-tasks__empty")
+		empty.innerText = "Execution List is empty"
+		executionTasks.appendChild(empty)
+	}
+
+	const addEmptyDescriptionForCompletedList = () => {
+		const empty = document.createElement("h4")
+		empty.setAttribute("class", "empty completed-tasks__empty")
+		empty.innerText = "Completed List is empty"
+		completedTasks.appendChild(empty)
+	}
 
 	const addTaskToTodoList = (e) => {
 		e.preventDefault()
@@ -14,31 +28,12 @@ const createTodoList = () => {
 			initialListOfTasks.push({
 				id: `${utils.generateRandomId()}`,
 				taskText: formInput.value,
-				status: "not done",
 			})
 
 			return initialListOfTasks
 		}
 
 		const listOfTasks = createListOfTasks()
-
-		const deleteCurrentCompletedTasksList = () => {
-			const completedTasksListElements = Array.from(
-				document.getElementsByClassName("completed-task")
-			)
-			if (completedTasksListElements.length !== 0) {
-				completedTasksListElements.forEach((element) => element.remove())
-			}
-		}
-
-		const deleteCurrentExecutionTasksList = () => {
-			const executionTasksListElements = Array.from(
-				document.getElementsByClassName("task")
-			)
-			if (executionTasksListElements.length !== 0) {
-				executionTasksListElements.forEach((element) => element.remove())
-			}
-		}
 
 		const updateCompletedtasksList = (e) => {
 			listOfTasks.forEach((task) => {
@@ -61,44 +56,23 @@ const createTodoList = () => {
 			drawCompletedTasksList(listOfCompletedTasks)
 		}
 
-		const createExecutionTaskElement = (taskObj) => {
-			const { id, taskText } = taskObj
-			const taskElement = document.createElement("li")
-			taskElement.classList.add("task")
-			taskElement.setAttribute("id", id)
-			taskElement.innerHTML = `
-				<div class="task-text__div">
-					<h3 class='task__text'>${taskText}</h3>
-				</div>
-				<button class='task__done'>Done</button>
-				<button class='task__delete'>Delete</button>
-			`
-			executionTasksList.appendChild(taskElement)
-		}
-
-		const createCompletedTaskElement = (taskObj) => {
-			const { id, taskText } = taskObj
-			const completedtaskElement = document.createElement("li")
-			completedtaskElement.classList.add("completed-task")
-			completedtaskElement.setAttribute("id", id)
-			completedtaskElement.innerHTML = `
-				<div class="task-text__div">
-					<h3 class='task__text'>${taskText}</h3>
-				</div>
-				<button class='task__delete'>Delete</button>
-			`
-			completedTasksList.appendChild(completedtaskElement)
+		const deleteSelectedTaskFromCompletedList = (e) => {
+			const index = listOfCompletedTasks.findIndex(
+				(task) => task.id === e.target.parentNode.id
+			)
+			listOfCompletedTasks.splice(index, 1)
+			drawCompletedTasksList(listOfCompletedTasks)
 		}
 
 		const createCompletedTasksListElements = (list) => {
 			list.forEach((element) => {
-				createCompletedTaskElement(element)
+				utils.createCompletedTaskElement(element)
 			})
 		}
 
 		const createExecutionTasksListElements = (list) => {
 			list.forEach((element) => {
-				createExecutionTaskElement(element)
+				utils.createExecutionTaskElement(element)
 			})
 		}
 
@@ -120,13 +94,46 @@ const createTodoList = () => {
 			})
 		}
 
+		const addEventListenerToDeleteButton = () => {
+			const deleteButtons = Array.from(
+				document.getElementsByClassName("task__delete")
+			)
+
+			deleteButtons.forEach((task) => {
+				task.addEventListener("click", deleteSelectedTaskFromCompletedList)
+			})
+		}
+
 		const drawCompletedTasksList = (list) => {
-			deleteCurrentCompletedTasksList()
+			if (
+				document.querySelector(".completed-tasks__empty") !== null &&
+				list.length > 0
+			) {
+				document.querySelector(".completed-tasks__empty").remove()
+			} else if (
+				document.querySelector(".completed-tasks__empty") === null &&
+				list.length === 0
+			) {
+				addEmptyDescriptionForCompletedList()
+			}
+			utils.deleteCurrentCompletedTasksList()
 			createCompletedTasksListElements(list)
+			addEventListenerToDeleteButton()
 		}
 
 		const drawExecutionTasksList = (list) => {
-			deleteCurrentExecutionTasksList()
+			if (
+				document.querySelector(".execution-tasks__empty") !== null &&
+				list.length > 0
+			) {
+				document.querySelector(".execution-tasks__empty").remove()
+			} else if (
+				document.querySelector(".execution-tasks__empty") === null &&
+				list.length === 0
+			) {
+				addEmptyDescriptionForExecutionList()
+			}
+			utils.deleteCurrentExecutionTasksList()
 			createExecutionTasksListElements(list)
 			addEvenetListeneresToButtons()
 		}

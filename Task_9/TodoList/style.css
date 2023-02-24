@@ -5,14 +5,20 @@
 }
 
 .container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-between;
-	width: 60%;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	grid-column-gap: 10px;
+	grid-row-gap: 10px;
 	height: 100vh;
-	margin: 0 auto;
-	border: 1px solid #333;
+}
+
+.form-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	grid-area: 1 / 1 / 2 / 3;
+	height: 10vh;
 }
 
 .form {
@@ -21,29 +27,74 @@
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	height: 10%;
 }
 
 .form__input {
+	width: 200px;
+	height: 30px;
+	padding: 2px;
+	border: 1px solid rgb(185, 181, 181);
 	outline: none;
+}
+
+.form__input:focus {
+	border: 1px solid blue;
+}
+
+.form__submit {
+	width: 70px;
+	height: 30px;
+	color: #fff;
+	outline: none;
+	border: none;
+	border-radius: 3px;
+	background-color: rgb(131, 131, 196);
+	cursor: pointer;
+}
+
+.empty {
+	font-family: "Montserrat", sans-serif;
+	color: rgb(192, 186, 186);
+}
+
+.fa-regular {
+	pointer-events: none;
+}
+
+.task__done {
+	outline: none;
+	border: none;
+	background: none;
+	cursor: pointer;
+}
+
+.task__delete {
+	outline: none;
+	border: none;
+	background: none;
+	cursor: pointer;
 }
 
 .execution-tasks {
 	display: flex;
-	flex-direction: column;
-	align-items: center;
+	align-items: flex-start;
+	justify-content: center;
+	grid-area: 2 / 1 / 3 / 2;
 	width: 100%;
-	height: 45%;
-	border: 1px solid #333;
+	height: 90vh;
+	padding: 20px 20px;
 }
 
 .execution-tasks__list {
 	list-style-type: none;
 }
 
-.task {
+.execution-task {
 	display: flex;
 	flex-direction: row;
+	justify-content: space-between;
+	width: 200px;
+	margin-top: 10px;
 }
 
 .task-text__div {
@@ -51,16 +102,16 @@
 	justify-content: center;
 	width: 100px;
 	height: fit-content;
-	border: 1px solid #333;
 }
 
 .completed-tasks {
 	display: flex;
-	flex-direction: column;
-	align-items: center;
+	align-items: flex-start;
+	justify-content: center;
+	grid-area: 2 / 2 / 3 / 3;
 	width: 100%;
-	height: 45%;
-	border: 1px solid #333;
+	height: 90vh;
+	padding: 20px 20px;
 }
 
 .completed-tasks__list {
