@@ -32,7 +32,7 @@ const getObject = () => {
 
 console.log(getObject())
 
-// 4․
+// 4.Սորտավորել զանգվածը ըստ յուր․ օբյեկտի libraryId-ի։
 let library = [
 	{
 		title: "The Road Ahead",
@@ -50,8 +50,6 @@ let library = [
 		libraryID: 3245,
 	},
 ]
-
-// Սորտավորել զանգվածը ըստ յուր․ օբյեկտի libraryId-ի։
 
 const library1 = library.sort((a, b) => a.libraryID - b.libraryID)
 console.log(library1)
