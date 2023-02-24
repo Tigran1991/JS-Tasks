@@ -139,6 +139,23 @@ console.log(num4.toString(2))
 
 // 10. https://edabit.com/challenge/3kcrnpHk7krNZdnKK
 
+let binary1 = []
+
+function binary(decimal) {
+	debugger
+	if (decimal >= 1) {
+		if (decimal % 2 === 0) {
+			binary1.unshift(0)
+		} else {
+			binary1.unshift(1)
+		}
+		binary(decimal / 2)
+	}
+	return binary1
+}
+
+console.log("10.", binary(10))
+
 //11. https://edabit.com/challenge/Q3n42rEWanZSTmsJm
 
 const minMax = (arr) => {
