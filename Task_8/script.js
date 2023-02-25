@@ -71,11 +71,8 @@ const checkIsItPrimeNumber = (number) => {
 
 	if (number < 0) {
 		return "The number must be positive"
-	} else if (number === 1) {
-		return true
-	} else {
-		return checkIsPositiveNumberisPrime()
-	}
+	} else if (number === 1) true
+	else checkIsPositiveNumberisPrime()
 }
 
 console.log("4.", checkIsItPrimeNumber(3))
@@ -97,11 +94,8 @@ const getArrayWithoutRepeatingNumbers = (arr) => {
 	const updatedArray = []
 	for (let i = 0; i < arr.length; i++) {
 		const currentElement = arr[i]
-		if (updatedArray.includes(currentElement)) {
-			continue
-		} else {
-			updatedArray.push(currentElement)
-		}
+		if (updatedArray.includes(currentElement)) continue
+		else updatedArray.push(currentElement)
 	}
 	return updatedArray
 }
@@ -139,22 +133,27 @@ console.log(num4.toString(2))
 
 // 10. https://edabit.com/challenge/3kcrnpHk7krNZdnKK
 
-let binary1 = []
+const binaryDigits = []
 
 function binary(decimal) {
-	debugger
 	if (decimal >= 1) {
 		if (decimal % 2 === 0) {
-			binary1.unshift(0)
+			binaryDigits.unshift(0)
 		} else {
-			binary1.unshift(1)
+			binaryDigits.unshift(1)
 		}
-		binary(decimal / 2)
+		binary(Math.floor(decimal / 2))
 	}
-	return binary1
+	let binaryRepresentation = ""
+
+	for (let i = 0; i < binaryDigits.length; i++) {
+		binaryRepresentation += binaryDigits[i]
+	}
+
+	return binaryRepresentation
 }
 
-console.log("10.", binary(10))
+console.log("10.", binary(20))
 
 //11. https://edabit.com/challenge/Q3n42rEWanZSTmsJm
 
@@ -162,11 +161,8 @@ const minMax = (arr) => {
 	const getMinValue = () => {
 		let min = arr[0]
 		for (let i = 1; i < arr.length; i++) {
-			if (arr[i] < min) {
-				min = arr[i]
-			} else {
-				continue
-			}
+			if (arr[i] < min) min = arr[i]
+			else continue
 		}
 		return min
 	}
@@ -174,11 +170,8 @@ const minMax = (arr) => {
 	const getMaxValue = () => {
 		let max = arr[0]
 		for (let i = 1; i < arr.length; i++) {
-			if (arr[i] > max) {
-				max = arr[i]
-			} else {
-				continue
-			}
+			if (arr[i] > max) max = arr[i]
+			else continue
 		}
 		return max
 	}
@@ -189,8 +182,12 @@ const minMax = (arr) => {
 	return [minValue, maxValue]
 }
 
-console.log("[1, 2, 3]", minMax([1, 2, 3]))
-console.log("[4, 6, 7, 3, 20, -2, 0, 11]", minMax([4, 6, 7, 3, 20, -2, 0, 11]))
+console.log("11.", "[1, 2, 3]", minMax([1, 2, 3]))
+console.log(
+	"11.",
+	"[4, 6, 7, 3, 20, -2, 0, 11]",
+	minMax([4, 6, 7, 3, 20, -2, 0, 11])
+)
 
 // 12. https://edabit.com/challenge/xsi99TwpGyFC8KS6d
 
@@ -209,5 +206,6 @@ const numberSplit = (num) => {
 	return [left, right]
 }
 
-console.log(numberSplit(20))
-console.log(numberSplit(81))
+console.log("12.", numberSplit(20))
+console.log("12.", numberSplit(81))
+console.log("12.", numberSplit(-83))
