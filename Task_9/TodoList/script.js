@@ -1,112 +1,135 @@
-const createTodoList = () => {
-	const formInput = document.querySelector(".form__input")
-	const formSubmitBtn = document.querySelector(".form__submit")
+const initialListOfTasks = new Array(0)
+const listOfCompletedTasks = new Array(0)
 
-	const initialListOfTasks = new Array(0)
-	const listOfCompletedTasks = new Array(0)
+const addTaskToTodoList = (input) => {
+	const createListOfTasks = () => {
+		initialListOfTasks.push({
+			id: `${utils.generateRandomId()}`,
+			taskText: input.value,
+		})
 
-	const addTaskToTodoList = (e) => {
-		e.preventDefault()
+		return initialListOfTasks
+	}
 
-		const createListOfTasks = () => {
-			initialListOfTasks.push({
-				id: `${utils.generateRandomId()}`,
-				taskText: formInput.value,
-			})
+	const listOfTasks = createListOfTasks()
 
-			return initialListOfTasks
-		}
+	const updateCompletedTasksListAfterDone = (e) => {
+		listOfTasks.forEach((task) => {
+			if (task.id === e.target.parentNode.id) listOfCompletedTasks.push(task)
+		})
 
-		const listOfTasks = createListOfTasks()
+		updateExecutionTasksList(e)
+		drawCompletedTasksList(listOfCompletedTasks)
+	}
 
-		const updateCompletedtasksList = (e) => {
-			listOfTasks.forEach((task) => {
-				if (task.id === e.target.parentNode.id) {
-					listOfCompletedTasks.push(task)
-				}
-			})
+	const updateExecutionTasksList = (e) => {
+		const index = listOfTasks.findIndex(
+			(task) => task.id === e.target.parentNode.id
+		)
+		listOfTasks.splice(index, 1)
 
-			deleteSelectedTask(e)
-			drawCompletedTasksList(listOfCompletedTasks)
-		}
+		drawExecutionTasksList(listOfTasks)
+	}
 
-		const deleteSelectedTask = (e) => {
-			const index = listOfTasks.findIndex(
-				(task) => task.id === e.target.parentNode.id
-			)
-			listOfTasks.splice(index, 1)
+	const updateCompletedTasksList = (e) => {
+		const index = listOfCompletedTasks.findIndex(
+			(task) => task.id === e.target.parentNode.id
+		)
+		listOfCompletedTasks.splice(index, 1)
+		drawCompletedTasksList(listOfCompletedTasks)
+	}
 
-			drawExecutionTasksList(listOfTasks)
-		}
+	const createCompletedTasksListElements = (list) => {
+		list.forEach((element) => {
+			utils.createCompletedTaskElement(element)
+		})
+	}
 
-		const deleteSelectedTaskFromCompletedList = (e) => {
-			const index = listOfCompletedTasks.findIndex(
-				(task) => task.id === e.target.parentNode.id
-			)
-			listOfCompletedTasks.splice(index, 1)
-			drawCompletedTasksList(listOfCompletedTasks)
-		}
+	const createExecutionTasksListElements = (list) => {
+		list.forEach((element) => {
+			utils.createExecutionTaskElement(element)
+		})
+	}
 
-		const createCompletedTasksListElements = (list) => {
-			list.forEach((element) => {
-				utils.createCompletedTaskElement(element)
-			})
-		}
-
-		const createExecutionTasksListElements = (list) => {
-			list.forEach((element) => {
-				utils.createExecutionTaskElement(element)
-			})
-		}
-
-		const addEvenetListeneresToButtons = () => {
+	const addEventListenersToExecutionTasksButtons = () => {
+		if (document.querySelector(".execution-task") !== null) {
 			const doneButtons = Array.from(
 				document.getElementsByClassName("task__done")
 			)
 
-			const deleteButtons = Array.from(
-				document.getElementsByClassName("task__delete")
+			const executionTaskDeleteButton = Array.from(
+				document.getElementsByClassName("execution-task__delete")
 			)
 
 			doneButtons.forEach((task) => {
-				task.addEventListener("click", updateCompletedtasksList)
+				task.addEventListener("click", updateCompletedTasksListAfterDone)
 			})
 
-			deleteButtons.forEach((task) => {
-				task.addEventListener("click", deleteSelectedTask)
+			executionTaskDeleteButton.forEach((task) => {
+				task.addEventListener("click", updateExecutionTasksList)
 			})
 		}
+	}
 
-		const addEventListenerToDeleteButton = () => {
+	const addEventListenerToCompletedTasksButtons = () => {
+		if (document.querySelector(".completed-task") !== null) {
 			const deleteButtons = Array.from(
-				document.getElementsByClassName("task__delete")
+				document.getElementsByClassName("completed-task__delete")
 			)
 
 			deleteButtons.forEach((task) => {
-				task.addEventListener("click", deleteSelectedTaskFromCompletedList)
+				task.addEventListener("click", updateCompletedTasksList)
 			})
 		}
-
-		const drawCompletedTasksList = (list) => {
-			utils.checkForEmpty(list, "completed-tasks__empty")
-			utils.deleteCurrentCompletedTasksList()
-			createCompletedTasksListElements(list)
-			addEventListenerToDeleteButton()
-		}
-
-		const drawExecutionTasksList = (list) => {
-			utils.checkForEmpty(list, "execution-tasks__empty")
-			utils.deleteCurrentExecutionTasksList()
-			createExecutionTasksListElements(list)
-			addEvenetListeneresToButtons()
-		}
-
-		drawExecutionTasksList(initialListOfTasks)
-
-		formInput.value = ""
 	}
 
-	formSubmitBtn.addEventListener("click", addTaskToTodoList)
+	const drawCompletedTasksList = (list) => {
+		utils.checkForEmpty(list, "completed-tasks__empty")
+		utils.deleteCurrentCompletedTasksList()
+		createCompletedTasksListElements(list)
+		addEventListenerToCompletedTasksButtons()
+	}
+
+	const drawExecutionTasksList = (list) => {
+		utils.checkForEmpty(list, "execution-tasks__empty")
+		utils.deleteCurrentExecutionTasksList()
+		createExecutionTasksListElements(list)
+		addEventListenersToExecutionTasksButtons()
+	}
+
+	drawExecutionTasksList(initialListOfTasks)
+
+	input.value = ""
 }
 
-createTodoList()
+const createInformEmptyInput = () => {
+	const emptyInputInform = document.createElement("div")
+	emptyInputInform.setAttribute("class", "empty-input")
+	emptyInputInform.innerHTML = `
+		<h4>Please enter task to Todo List !</h4>
+	`
+	document.querySelector(".form-container").appendChild(emptyInputInform)
+}
+
+const makeTodoList = () => {
+	const formInput = document.querySelector(".form__input")
+	const formSubmitBtn = document.querySelector(".form__submit")
+
+	const createTodoList = (e) => {
+		e.preventDefault()
+		if (formInput.value === "") createInformEmptyInput()
+		else addTaskToTodoList(formInput)
+	}
+
+	formInput.addEventListener("focus", (e) => utils.hideEmptyInputInform(e))
+
+	formInput.addEventListener("blur", (e) => utils.setBlurBackgroundToInput(e))
+
+	window.addEventListener("click", (e) =>
+		utils.hideEmptyInputInformOnOutsideClick(e)
+	)
+
+	formSubmitBtn.addEventListener("click", createTodoList)
+}
+
+makeTodoList()

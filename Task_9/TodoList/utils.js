@@ -4,6 +4,21 @@ const executionTasksList = document.querySelector(".execution-tasks__list")
 const completedTasksList = document.querySelector(".completed-tasks__list")
 
 const utils = {
+	hideEmptyInputInform: (e) => {
+		e.target.style.background = "#84b982"
+		if (document.querySelector(".empty-input") !== null)
+			document.querySelector(".empty-input").remove()
+	},
+
+	setBlurBackgroundToInput: (e) => (e.target.style.background = ""),
+
+	hideEmptyInputInformOnOutsideClick: (e) => {
+		if (!document.querySelector(".form").contains(e.target)) {
+			if (document.querySelector(".empty-input") !== null)
+				document.querySelector(".empty-input").remove()
+		} else null
+	},
+
 	generateRandomId: () => Math.floor(Math.random() * 10000),
 
 	createExecutionTaskElement: (taskObj) => {
@@ -15,8 +30,12 @@ const utils = {
 			<div class="task-text__div">
 				<h3 class='task__text'>${taskText}</h3>
 			</div>
-			<button class='task__done'><i class="fa-regular fa-circle-check"></i></button>
-			<button class='task__delete'><i class="fa-regular fa-trash-can"></i></button>
+			<button class='task__done'>
+				<i class="fa-regular fa-circle-check fa-lg"></i>
+			</button>
+			<button class='execution-task__delete delete-button'>
+				<i class="fa-regular fa-trash-can fa-lg"></i>
+			</button>
 		`
 		executionTasksList.appendChild(taskElement)
 	},
@@ -30,7 +49,9 @@ const utils = {
 			<div class="task-text__div">
 				<h3 class='task__text'>${taskText}</h3>
 			</div>
-			<button class='task__delete'><i class="fa-regular fa-trash-can"></i></button>
+			<button class='completed-task__delete delete-button'>
+				<i class="fa-regular fa-trash-can fa-lg"></i>
+			</button>
 		`
 		completedTasksList.appendChild(completedtaskElement)
 	},
@@ -39,18 +60,16 @@ const utils = {
 		const completedTasksListElements = Array.from(
 			document.getElementsByClassName("completed-task")
 		)
-		if (completedTasksListElements.length !== 0) {
+		if (completedTasksListElements.length !== 0)
 			completedTasksListElements.forEach((element) => element.remove())
-		}
 	},
 
 	deleteCurrentExecutionTasksList: () => {
 		const executionTasksListElements = Array.from(
 			document.getElementsByClassName("execution-task")
 		)
-		if (executionTasksListElements.length !== 0) {
+		if (executionTasksListElements.length !== 0)
 			executionTasksListElements.forEach((element) => element.remove())
-		}
 	},
 
 	addEmptyDescriptionForExecutionList: () => {
@@ -70,21 +89,16 @@ const utils = {
 	},
 
 	selectArea: (id) => {
-		if (id === "execution-tasks__empty") {
+		if (id === "execution-tasks__empty")
 			utils.addEmptyDescriptionForExecutionList()
-		} else if (id === "completed-tasks__empty") {
+		else if (id === "completed-tasks__empty")
 			utils.addEmptyDescriptionForCompletedList()
-		}
 	},
 
 	checkForEmpty: (list, elementsId) => {
-		if (document.getElementById(elementsId) !== null && list.length > 0) {
+		if (document.getElementById(elementsId) !== null && list.length > 0)
 			document.getElementById(elementsId).remove()
-		} else if (
-			document.getElementById(elementsId) === null &&
-			list.length === 0
-		) {
+		else if (document.getElementById(elementsId) === null && list.length === 0)
 			utils.selectArea(elementsId)
-		}
 	},
 }

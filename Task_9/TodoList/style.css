@@ -18,6 +18,7 @@
 	align-items: center;
 	justify-content: center;
 	grid-area: 1 / 1 / 2 / 3;
+	position: relative;
 	height: 10vh;
 }
 
@@ -26,7 +27,7 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-	width: 100%;
+	width: fit-content;
 }
 
 .form__input {
@@ -35,10 +36,26 @@
 	padding: 2px;
 	border: 1px solid rgb(185, 181, 181);
 	outline: none;
+	margin-right: 3px;
 }
 
 .form__input:focus {
 	border: 1px solid blue;
+}
+
+.empty-input {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	width: 230px;
+	height: 60px;
+	font-family: "Montserrat", sans-serif;
+	font-size: 14px;
+	background-color: #be7979;
+	border-radius: 10px;
+	color: #fff;
+	top: 60px;
 }
 
 .form__submit {
@@ -55,24 +72,6 @@
 .empty {
 	font-family: "Montserrat", sans-serif;
 	color: rgb(192, 186, 186);
-}
-
-.fa-regular {
-	pointer-events: none;
-}
-
-.task__done {
-	outline: none;
-	border: none;
-	background: none;
-	cursor: pointer;
-}
-
-.task__delete {
-	outline: none;
-	border: none;
-	background: none;
-	cursor: pointer;
 }
 
 .execution-tasks {
@@ -92,9 +91,33 @@
 .execution-task {
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 	justify-content: space-between;
+	font-family: "Montserrat", sans-serif;
 	width: 200px;
+	height: fit-content;
 	margin-top: 10px;
+	padding: 3px;
+}
+
+.fa-regular {
+	height: 100%;
+	pointer-events: none;
+}
+
+.task__done {
+	outline: none;
+	border: none;
+	background: none;
+	cursor: pointer;
+}
+
+.delete-button {
+	text-align: center;
+	outline: none;
+	border: none;
+	background: none;
+	cursor: pointer;
 }
 
 .task-text__div {
@@ -121,7 +144,10 @@
 .completed-task {
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 	justify-content: space-between;
+	font-family: "Montserrat", sans-serif;
 	width: 150px;
+	height: 30px;
 	margin-top: 10px;
 }
