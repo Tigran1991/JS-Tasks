@@ -19,10 +19,10 @@
 
 // 3․ Տրված է երկու հեռավորություն, մեկը կիլոմետրով, մյուսը մետրով։ Գտեք որն է ավելի մեծ։ // is incomplete
 
-// const distanceByKilometr = 2
-// const distanceByMeter = 400
+const distanceByKilometr = 2
+const distanceByMeter = 400
 
-// const kilometerByMeter = distanceByKilometr * 1000
+const kilometerByMeter = distanceByKilometr * 1000
 
 arr = [1, 3, 7, 5, 9, 8, 1, 9, 10, 11, 45]
 

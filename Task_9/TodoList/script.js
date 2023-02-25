@@ -84,15 +84,15 @@ const addTaskToTodoList = (input) => {
 	}
 
 	const drawCompletedTasksList = (list) => {
-		utils.checkForEmpty(list, "completed-tasks__empty")
 		utils.deleteCurrentCompletedTasksList()
+		utils.checkForEmpty(list, "completed-tasks__empty")
 		createCompletedTasksListElements(list)
 		addEventListenerToCompletedTasksButtons()
 	}
 
 	const drawExecutionTasksList = (list) => {
-		utils.checkForEmpty(list, "execution-tasks__empty")
 		utils.deleteCurrentExecutionTasksList()
+		utils.checkForEmpty(list, "execution-tasks__empty")
 		createExecutionTasksListElements(list)
 		addEventListenersToExecutionTasksButtons()
 	}
