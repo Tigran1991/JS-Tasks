@@ -17,12 +17,22 @@
 // 	console.log("False, last digit is not 2")
 // }
 
-// 3․ Տրված է երկու հեռավորություն, մեկը կիլոմետրով, մյուսը մետրով։ Գտեք որն է ավելի մեծ։ // is incomplete
+// 3․ Տրված է երկու հեռավորություն, մեկը կիլոմետրով, մյուսը մետրով։ Գտեք որն է ավելի մեծ։
 
-const distanceByKilometr = 2
-const distanceByMeter = 400
+// const meter = 1
+// const kilometer = 1000 * meter
 
-const kilometerByMeter = distanceByKilometr * 1000
+// let firstDistance = 4 * meter
+// let secondDistance = 2 * kilometer
+
+// console.log(firstDistance)
+// console.log(secondDistance)
+
+// if (firstDistance > secondDistance) {
+// 	console.log(`firstDistance is greater`)
+// } else {
+// 	console.log("secondDistance is greater")
+// }
 
 arr = [1, 3, 7, 5, 9, 8, 1, 9, 10, 11, 45]
 
