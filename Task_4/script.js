@@ -157,16 +157,16 @@ arr = ["Hello", 15, "World", true, 89, 157, [1, 3, 7]]
 
 // 16. Գտնել զանգվածի էլեմենտներից քանիսն են բուլյան տիպի
 
-// const findCountOfBooleanTypes = () => {
-// 	const booleanTypeElements = arr.filter((element) => {
-// 		if (typeof element === "boolean") {
-// 			return element
-// 		}
-// 	})
-// 	return booleanTypeElements.length
-// }
+const findCountOfBooleanTypes = () => {
+	const booleanTypeElements = arr.filter((element) => {
+		if (typeof element === "boolean") {
+			return element
+		}
+	})
+	return booleanTypeElements.length
+}
 
-// console.log(findCountOfBooleanTypes())
+console.log(findCountOfBooleanTypes())
 
 // 17․ Տպել զանգվածի վերջին էլեմենտի բոլոր էլեմենտները
 
@@ -298,3 +298,9 @@ arr = ["Hello", 15, "World", true, 89, 157, [1, 3, 7]]
 // }
 
 // compareSumOfArrayElements()
+
+async function getPosts() {
+	const resp = await fetch("https://jsonplaceholder.typicode.com/posts")
+	const data = await resp.json()
+	console.log(data)
+}

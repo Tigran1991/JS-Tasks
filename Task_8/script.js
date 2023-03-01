@@ -6,17 +6,25 @@
 // այլ դեպքերում "Սխալ գնահատական"։
 
 const getGrades = (n) => {
+	const getGradeValues = (a, b) => {
+		const gradeValues = []
+		for (let i = a; i <= b; i++) {
+			gradeValues.push(i)
+		}
+		return gradeValues
+	}
+
 	const grades = {
-		vat: [1, 2, 3],
-		mijin: [4, 5, 6],
-		lav: [7, 8],
-		gerazanc: [9, 10],
+		vat: getGradeValues(1, 3),
+		mijin: getGradeValues(4, 6),
+		lav: getGradeValues(7, 8),
+		gerazanc: getGradeValues(9, 10),
 	}
 
 	const getGradesByN = () => {
 		if (grades.vat.includes(n)) {
 			return "Վատ"
-		} else if (grades.lav.includes(n)) {
+		} else if (grades.mijin.includes(n)) {
 			return "Միջին"
 		} else if (grades.lav.includes(n)) {
 			return "Լավ"

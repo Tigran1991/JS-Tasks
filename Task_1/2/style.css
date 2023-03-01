@@ -54,9 +54,7 @@
 	text-align: center;
 }
 
-.user1,
-.user2,
-.user3 {
+.user {
 	display: flex;
 	flex-direction: column;
 	width: 285px;
