@@ -42,7 +42,7 @@ button {
 	padding-left: 3px;
 	font-family: "Luxurious Roman", cursive;
 	font-weight: 500;
-	transition: 0.1s ease-in;
+	transition: 0.1s ease-out;
 }
 
 .input_gladiator:focus {
@@ -62,7 +62,7 @@ button {
 	font-weight: 500;
 	border: none;
 	cursor: pointer;
-	transition: 0.3s ease-in;
+	transition: 0.3s ease-out;
 }
 
 .play_game:hover {
@@ -89,7 +89,7 @@ button {
 	font-weight: 500;
 	border: none;
 	cursor: pointer;
-	transition: 0.3s ease-in;
+	transition: 0.3s ease-out;
 	position: absolute;
 	top: 40%;
 }
@@ -152,7 +152,7 @@ button {
 	font-weight: 500;
 	border: none;
 	cursor: pointer;
-	transition: 0.3s ease-in;
+	transition: 0.3s ease-out;
 }
 
 .winner {
@@ -163,5 +163,6 @@ button {
 	height: 300px;
 	background-color: chocolate;
 	color: #fff;
+	border: 3px solid #fff;
 	border-radius: 10px;
 }

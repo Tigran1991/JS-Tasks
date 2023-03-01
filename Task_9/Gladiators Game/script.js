@@ -9,11 +9,8 @@ const newGame = () => {
 
 	const makeGame = (e) => {
 		e.preventDefault()
-		if (input.value === "") {
-			alert("Please enter number of gladiators !")
-		} else {
-			playGame(container, input)
-		}
+		if (input.value === "") alert("Please enter number of gladiators !")
+		else playGame(container, input)
 	}
 
 	form.addEventListener("submit", makeGame)
