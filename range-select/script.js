@@ -14,22 +14,29 @@ const todo = () => {
 		}
 		if (counterOfClicks === 2) {
 			containerItemBgColor.forEach((item, i) => {
-				if (item === "red") {
-					if (i < e.target.id) {
-						for (let j = i; j <= e.target.id; j++) {
-							containerItemBgColor[j] = "red"
-						}
+				if (item === "red" && i < e.target.id) {
+					for (let j = i; j <= e.target.id; j++) {
+						containerItemBgColor[j] = "red"
 					}
-					if (i > e.target.id) {
-						for (let j = e.target.id; j <= i; j++) {
-							containerItemBgColor[j] = "red"
-						}
+				}
+				if (item === "red" && i > e.target.id) {
+					for (let j = e.target.id; j <= i; j++) {
+						containerItemBgColor[j] = "red"
 					}
 				}
 			})
 			containerItems.forEach(
 				(item, i) => (item.style.backgroundColor = containerItemBgColor[i])
 			)
+
+			for (let i = 0; i < containerItemBgColor.length; i++) {
+				containerItemBgColor[i] = "green"
+			}
+		}
+		if (counterOfClicks > 2) {
+			counterOfClicks = 0
+			console.log(containerItemBgColor)
+			clickOnItem(e, todo)
 		}
 	}
 
