@@ -93,7 +93,6 @@ export default function checkGladiators(container, gladiators) {
 		}
 
 		const updateGladiatorsField = () => {
-			console.log(document.querySelector(".arena_field"))
 			deleteGladiatorsField()
 			const updatedList = updateGladiatorsListData()
 			document.querySelector(".arena_field").remove()
@@ -141,9 +140,7 @@ export default function checkGladiators(container, gladiators) {
 				kiker.health -= hitter.power
 				updateGladiators(fightingGladiators, kikersIndex)
 			}
-			if (kiker.health <= 0 || hittersIndex === 1) {
-				updateGladiatorsField()
-			}
+			if (kiker.health <= 0 || hittersIndex === 1) updateGladiatorsField()
 		}
 
 		hitBtn.addEventListener("click", hitTheGladiator)
