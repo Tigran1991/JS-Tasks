@@ -27,9 +27,23 @@ const objectOri = {
 	},
 }
 
-for (const key in objectOri) {
-	if (Object.hasOwnProperty.call(objectOri, key)) {
-		const element = objectOri[key]
-		console.log(element)
-	}
+const changeData = (obj) => {
+	let n = 0
+	const changedObj = {}
+	const objValues = Object.values(obj)
+	objValues.forEach((element) => {
+		const brandObj = element.brand
+		const group = element.group
+		for (const key in brandObj) {
+			if (Object.hasOwnProperty.call(brandObj, key)) {
+				const element = brandObj[key]
+				element.group = group
+				changedObj[n] = element
+				n++
+			}
+		}
+	})
+	return changedObj
 }
+
+console.log(changeData(objectOri))
