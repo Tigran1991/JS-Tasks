@@ -35,7 +35,7 @@
 	height: 100%;
 	position: absolute;
 	backface-visibility: hidden;
-	background-color: blue;
+	background-color: green;
 }
 
 .theback {
@@ -45,4 +45,6 @@
 	backface-visibility: hidden;
 	background-color: brown;
 	transform: rotateY(180deg);
+	color: #fff;
+	text-align: center;
 }
