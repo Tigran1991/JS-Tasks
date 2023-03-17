@@ -157,16 +157,14 @@ arr = ["Hello", 15, "World", true, 89, 157, [1, 3, 7]]
 
 // 16. Գտնել զանգվածի էլեմենտներից քանիսն են բուլյան տիպի
 
-const findCountOfBooleanTypes = () => {
-	const booleanTypeElements = arr.filter((element) => {
-		if (typeof element === "boolean") {
-			return element
-		}
-	})
-	return booleanTypeElements.length
-}
+// const findCountOfBooleanTypes = () => {
+// 	const booleanTypeElements = arr.filter(
+// 		(element) => typeof element === "boolean"
+// 	)
+// 	return booleanTypeElements.length
+// }
 
-console.log(findCountOfBooleanTypes())
+// console.log(findCountOfBooleanTypes())
 
 // 17․ Տպել զանգվածի վերջին էլեմենտի բոլոր էլեմենտները
 
