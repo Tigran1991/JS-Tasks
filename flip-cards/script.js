@@ -3,19 +3,22 @@ const cardsContainerList = document.querySelector(".cards-container__list")
 const form = document.querySelector(".form")
 const input = document.querySelector(".form__input")
 
+const X = 0,
+	Y = 1
+const cardNumbers = []
+const selectedCards = []
+
 const startGame = (e) => {
 	e.preventDefault()
 
-	const MIN_RANGE = 1
-	const range = Number(input.value) + 1
+	const range = Number(input.value) + Y
 	const countOfCards = input.value * 2
-	const cardNumbers = []
 
 	const filterRepetitiveNumbers = (number) =>
 		cardNumbers.filter((item) => item === number)
 
 	const generateRandomNumber = () => {
-		const generatedNumber = utils.getRandomNumber(MIN_RANGE, range)
+		const generatedNumber = utils.getRandomNumber(Y, range)
 		if (cardNumbers.includes(generatedNumber)) {
 			const filteredNumbers = filterRepetitiveNumbers(generatedNumber)
 			if (filteredNumbers.length < 2) {
@@ -37,49 +40,46 @@ const startGame = (e) => {
 
 	const cards = generateRandomNumbersInRangeForCards()
 
-	const todo = []
+	const makeComparison = (index1, index2) => {
+		const elements = Array.from(document.getElementsByClassName("theback"))
+		if (cardNumbers[index1] === cardNumbers[index2]) {
+			elements[index1].style.backgroundColor = "#fff"
+			elements[index2].style.backgroundColor = "#fff"
+			selectedCards.length = X
+		} else {
+			const elements = Array.from(document.getElementsByClassName("card"))
+			setTimeout(() => {
+				elements[index1].style.transform = "rotateY(0deg)"
+				elements[index2].style.transform = "rotateY(0deg)"
+			}, 1000)
+			selectedCards.length = X
+		}
+	}
 
-	console.log(cardNumbers)
+	const selectCards = (e, card) => {
+		card.style.transform = "rotateY(180deg)"
+		selectedCards.push(e.target.parentNode.id)
+		if (selectedCards.length === 2) {
+			const firstCardIndex = Number(selectedCards[X])
+			const secondCardIndex = Number(selectedCards[Y])
+			makeComparison(firstCardIndex, secondCardIndex)
+		}
+	}
+
+	const createCardElement = (currentCard, index) => {
+		const card = utils.createCard(index)
+		const cardFront = utils.createCardFront()
+		const cardBack = utils.createCardBack(currentCard)
+		cardsContainer.appendChild(card)
+		card.appendChild(cardFront)
+		card.appendChild(cardBack)
+		return card
+	}
 
 	const addCards = () => {
 		cards.forEach((item, i) => {
-			const card = utils.createCard(i)
-			const cardFront = utils.createCardFront()
-			const cardBack = utils.createCardBack(item)
-			cardsContainer.appendChild(card)
-			card.appendChild(cardFront)
-			card.appendChild(cardBack)
-			card.addEventListener("click", (e) => {
-				card.style.transform = "rotateY(180deg)"
-				todo.push(e.target.parentNode.id)
-				if (todo.length === 2) {
-					const index1 = Number(todo[0])
-					const index2 = Number(todo[1])
-					console.log(cardNumbers[index1])
-					console.log(cardNumbers[index2])
-					const elements = Array.from(
-						document.getElementsByClassName("theback")
-					)
-
-					if (cardNumbers[index1] === cardNumbers[index2]) {
-						console.log(elements[index1])
-						elements[index1].style.backgroundColor = "#fff"
-						elements[index1].style.color = "#333"
-						elements[index2].style.backgroundColor = "#fff"
-						elements[index2].style.color = "#333"
-						todo.length = 0
-					} else {
-						const elements = Array.from(document.getElementsByClassName("card"))
-						console.log(elements[index1])
-						console.log(elements[index2])
-						setTimeout(() => {
-							elements[index1].style.transform = "rotateY(0deg)"
-							elements[index2].style.transform = "rotateY(0deg)"
-						}, 1000)
-						todo.length = 0
-					}
-				}
-			})
+			const card = createCardElement(item, i)
+			card.addEventListener("click", (e) => selectCards(e, card))
 		})
 
 		cardsContainer.style.width = `${countOfCards * 150}px`

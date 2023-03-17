@@ -8,6 +8,15 @@
 	display: flex;
 	flex-direction: column;
 	align-items: space-between;
+	padding: 10px;
+}
+
+.form__input {
+	outline: none;
+}
+
+.form__btn {
+	padding: 0 10px 0 10px;
 }
 
 .cards-container {
@@ -18,7 +27,7 @@
 	position: relative;
 	border-radius: 10px;
 	margin: 0 auto;
-	background-color: #c0b1b1;
+	background-color: #e0f2e6;
 }
 
 .card {
@@ -43,8 +52,9 @@
 	height: 100%;
 	position: absolute;
 	backface-visibility: hidden;
-	background-color: brown;
+	background-color: yellow;
 	transform: rotateY(180deg);
-	color: #fff;
+	color: #333;
 	text-align: center;
+	transition: background-color 1s ease;
 }
