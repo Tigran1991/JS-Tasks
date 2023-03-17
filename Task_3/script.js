@@ -18,11 +18,22 @@
 
 // 9.	Given three numbers. Find the maximum one.
 
-// const num1 = 1
-// const num2 = 2
-// const num3 = 3
+// const num1 = 1,
+// 	num2 = 2,
+// 	num3 = 3
+// const arr = [num1, num2, num3]
 
-// const max = Math.max(num1, num2, num3)
+// const getMaxValue = (arr) => {
+// 	let maxValue = num1
+// 	for (let i = 1; i < arr.length; i++) {
+// 		if (arr[i] > maxValue) {
+// 			maxValue = arr[i]
+// 		}
+// 	}
+// 	return maxValue
+// }
+
+// const max = getMaxValue(arr)
 // console.log(max)
 
 // 14.  	Print all numbers between 1 and 10.
