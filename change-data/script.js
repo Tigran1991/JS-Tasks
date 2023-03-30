@@ -27,23 +27,27 @@ const objectOri = {
 	},
 }
 
+// const changeData = (obj) => {
+// 	let n = 0
+// 	const changedObj = {}
+// 	const objValues = Object.values(obj)
+// 	objValues.forEach((element) => {
+// 		const brandObj = element.brand
+// 		const group = element.group
+// 		for (const key in brandObj) {
+// 			if (Object.hasOwnProperty.call(brandObj, key)) {
+// 				const element = brandObj[key]
+// 				element.group = group
+// 				changedObj[n] = element
+// 				n++
+// 			}
+// 		}
+// 	})
+// 	return changedObj
+// }
+
 const changeData = (obj) => {
-	let n = 0
-	const changedObj = {}
-	const objValues = Object.values(obj)
-	objValues.forEach((element) => {
-		const brandObj = element.brand
-		const group = element.group
-		for (const key in brandObj) {
-			if (Object.hasOwnProperty.call(brandObj, key)) {
-				const element = brandObj[key]
-				element.group = group
-				changedObj[n] = element
-				n++
-			}
-		}
-	})
-	return changedObj
+	return Object.values(obj)
 }
 
 console.log(changeData(objectOri))
