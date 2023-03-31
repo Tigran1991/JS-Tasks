@@ -4,7 +4,125 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
+		<title>Your Furniture</title>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+			integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
 	</head>
-	<body></body>
+	<body>
+		<header>
+			<div class="header-container">
+				<img src="../images/logo-no-background.png" alt="logo" class="logo" />
+				<div class="navbar">
+					<ul class="navbar-list">
+						<li>
+							<a href="#" class="navbar-list__item">Home Page</a>
+						</li>
+						<li>
+							<a
+								href="./Contact/contact.html"
+								class="navbar-list__item"
+								target="_blank"
+								>Contacts</a
+							>
+						</li>
+						<li>
+							<a
+								href="./Products/product.html"
+								class="navbar-list__item"
+								target="_blank"
+								>Products</a
+							>
+						</li>
+						<li>
+							<a href="#" class="navbar-list__item">Page</a>
+						</li>
+					</ul>
+				</div>
+				<form class="form">
+					<button class="form-btn">
+						<i class="fa-solid fa-magnifying-glass"></i>
+					</button>
+				</form>
+				<div class="purchase">
+					<i class="fa-solid fa-cart-shopping"></i>
+				</div>
+				<div class="profile">
+					<i class="fa-solid fa-right-to-bracket"></i>
+				</div>
+			</div>
+		</header>
+		<main>
+			<div class="main-container">
+				<div class="product__wrapper">
+					<img src="../images/atorner/1.jpg" class="product__image" alt="" />
+				</div>
+				<h1 class="product__name">Product 1</h1>
+				<p class="product__description">
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi qui
+					pariatur delectus soluta animi expedita, sint non harum eaque
+					consequatur quo, veritatis ullam ut officiis. Earum vel neque quas
+					repellat tenetur fugiat, animi distinctio consectetur non deleniti
+					minus repellendus sint.
+				</p>
+				<button class="product__purchase">Add to Card</button>
+			</div>
+		</main>
+		<footer>
+			<div class="footer-container">
+				<div class="footer-container__logo">
+					<h2 class="footer-container__company">Your Furniture</h2>
+					<h4 class="footer-container__slogan">The best Furniture for You !</h4>
+				</div>
+				<div class="footer-container__materials">
+					<ul class="materials__list">
+						<li>
+							<ul class="items">
+								<li>About us</li>
+								<li>Our Store</li>
+								<li>Branches</li>
+								<li>Designers</li>
+								<li>Costumers</li>
+							</ul>
+						</li>
+						<li>
+							<ul class="items">
+								<li>Partners</li>
+								<li>Work with us</li>
+								<li>Blog</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div class="footer-container__social">
+					<div class="footer-container__social___inner">
+						<div class="wrapper">
+							<i class="fa-brands fa-facebook-f"></i>
+						</div>
+						<div class="wrapper">
+							<i class="fa-brands fa-twitter"></i>
+						</div>
+						<div class="wrapper">
+							<i class="fa-brands fa-google-plus-g"></i>
+						</div>
+						<div class="wrapper">
+							<i class="fa-brands fa-instagram"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<script src="script.js"></script>
+	</body>
 </html>

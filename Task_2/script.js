@@ -17,11 +17,17 @@ formBtn.addEventListener("click", () => {
 	addSearchInput()
 })
 
+const sliders = document.querySelectorAll(".slider")
 const scrollableImages = document.querySelectorAll(".scrollable__image")
+console.log(sliders)
 
-scrollableImages.forEach((image, index) => {
-	image.style.transform = `translateX(${index * 100}%)`
+sliders.forEach((slider, index) => {
+	slider.style.transform = `translateX(${index * 100}%)`
 })
+
+// scrollableImages.forEach((image, index) => {
+// 	image.style.transform = `translateX(${index * 100}%)`
+// })
 
 let currentSlide = 0
 let maxSlide = scrollableImages.length - 1
@@ -33,9 +39,9 @@ previous.addEventListener("click", () => {
 		currentSlide -= 1
 	}
 
-	scrollableImages.forEach(
-		(image, index) =>
-			(image.style.transform = `translateX(${100 * (index - currentSlide)}%)`)
+	sliders.forEach(
+		(slider, index) =>
+			(slider.style.transform = `translateX(${100 * (index - currentSlide)}%)`)
 	)
 })
 
@@ -46,8 +52,8 @@ next.addEventListener("click", () => {
 		currentSlide++
 	}
 
-	scrollableImages.forEach(
-		(image, index) =>
-			(image.style.transform = `translateX(${100 * (index - currentSlide)}%)`)
+	sliders.forEach(
+		(slider, index) =>
+			(slider.style.transform = `translateX(${100 * (index - currentSlide)}%)`)
 	)
 })
