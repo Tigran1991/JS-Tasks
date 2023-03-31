@@ -28,6 +28,10 @@ header {
 	padding: 10px;
 }
 
+.logo__wrapper {
+	height: 40px;
+}
+
 .logo {
 	width: 140px;
 	height: 40px;
@@ -90,10 +94,10 @@ main {
 
 .main-container {
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: 11% 72% 11%;
+	grid-template-columns: 1fr 2fr;
+	grid-template-rows: 11% 40% 11%;
 	width: 80%;
-	padding: 70px 0px 10px 0px;
+	padding: 90px 0px 10px 0px;
 }
 
 .product__wrapper {

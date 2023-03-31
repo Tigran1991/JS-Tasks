@@ -23,7 +23,9 @@
 	<body>
 		<header>
 			<div class="header-container">
-				<img src="./images/logo-no-background.png" alt="logo" class="logo" />
+				<a href="./index.html" class="logo__wrapper"
+					><img src="./images/logo-no-background.png" alt="logo" class="logo"
+				/></a>
 				<div class="navbar">
 					<ul class="navbar-list">
 						<li>
@@ -44,9 +46,6 @@
 								target="_blank"
 								>Products</a
 							>
-						</li>
-						<li>
-							<a href="#" class="navbar-list__item">Page</a>
 						</li>
 					</ul>
 				</div>
@@ -73,31 +72,45 @@
 							<h3 class="scrollable__subtitle1">
 								Shop today and get discounts !
 							</h3>
-							<button class="shop-discount">
-								<a href="./Page/page.html" target="_blank">Shop Now</a>
-							</button>
+
+							<a href="./Page/page.html" target="_blank">
+								<button class="shop-discount">Shop Now</button>
+							</a>
 						</div>
 					</div>
 					<div class="slider">
 						<div class="scrollable__image">
 							<img src="/images/furniture2.jpg" class="image" alt="" />
-							<!-- <h1 class="scrollable__title1">Our Discounts</h1>
+							<h1 class="scrollable__title1">Our New Assortment</h1>
 							<h3 class="scrollable__subtitle1">
-								Shop today and get discounts !
+								Click and see our new assortment !
 							</h3>
-							<button class="shop-discount">Shop Now</button> -->
+							<a href="./Page/page.html" target="_blank">
+								<button class="shop-discount">See More</button>
+							</a>
 						</div>
 					</div>
 					<div class="slider">
 						<div class="scrollable__image">
 							<img src="/images/furniture3.jpg" class="image" alt="" />
-							<!-- <h1 class="scrollable__title1">Our Discounts</h1>
+							<h1 class="scrollable__title1">Subscribe</h1>
 							<h3 class="scrollable__subtitle1">
-								Shop today and get discounts !
+								Add Your Email and Subscribe !
 							</h3>
-							<button class="shop-discount">Shop Now</button> -->
+							<input
+								type="email"
+								name="email"
+								class="subscribe__email"
+								placeholder="Your Email"
+							/>
 						</div>
 					</div>
+					<div class="dots">
+						<span class="dot"></span>
+						<span class="dot"></span>
+						<span class="dot"></span>
+					</div>
+
 					<button class="previous">
 						<i class="fa-solid fa-angle-left"></i>
 					</button>

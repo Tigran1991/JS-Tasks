@@ -28,6 +28,10 @@ header {
 	padding: 10px;
 }
 
+.logo__wrapper {
+	height: 40px;
+}
+
 .logo {
 	width: 140px;
 	height: 40px;
