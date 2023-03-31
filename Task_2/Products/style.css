@@ -95,116 +95,32 @@ header {
 
 main {
 	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
-	width: 100%;
-	height: 2000px;
-	padding-top: 140px;
-	position: relative;
-}
-
-.scrollable {
-	display: flex;
-	flex-direction: row;
-	position: relative;
-	width: 80%;
-	height: 460px;
-	position: relative;
-	margin: 0 auto;
-	transition: 1s ease;
-	overflow: hidden;
-}
-
-.slide {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-}
-
-.scrollable__image {
-	position: absolute;
-	width: 100%;
-	height: 460px;
-	transition: 0.9s ease;
-	object-fit: cover;
-	border-radius: 11px;
-}
-
-.scrollable__title1 {
-	position: absolute;
-	top: 30%;
-	left: 10%;
-}
-
-.scrollable__subtitle1 {
-	position: absolute;
-	top: 40%;
-	left: 10%;
-}
-
-.scrollable__title2 {
-	position: absolute;
-	top: 60%;
-	left: 10%;
-}
-
-.scrollable__subtitle2 {
-	position: absolute;
-	top: 40%;
-	left: 10%;
-}
-
-.scrollable__title3 {
-	position: absolute;
-	top: 30%;
-	left: 10%;
-}
-
-.scrollable__subtitle3 {
-	position: absolute;
-	top: 40%;
-	left: 10%;
-}
-
-.previous {
-	display: flex;
 	justify-content: center;
 	align-items: center;
-	position: absolute;
-	top: 50%;
-	left: 10px;
-	width: 40px;
-	height: 40px;
-	background-color: #eee;
-	border: 1px solid #fff;
-	border-radius: 50%;
-	cursor: pointer;
 }
 
-.next {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 40px;
-	height: 40px;
-	background-color: #eee;
-	position: absolute;
-	top: 50%;
-	right: 10px;
-	border: 1px solid #fff;
-	border-radius: 50%;
-	cursor: pointer;
-}
-
-.products {
+.products__container {
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: repeat(2, 1fr);
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(3, 1fr);
 	grid-column-gap: 40px;
 	grid-row-gap: 40px;
 	width: 90%;
+	padding-top: 140px;
+	padding-bottom: 40px;
 	height: fit-content;
+}
+
+.product {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: 11% 72% 11%;
+	grid-column-gap: 10px;
+	grid-row-gap: 10px;
+	height: 300px;
+	border: 1px solid #a1a1a1;
+	border-radius: 3px;
+	padding: 10px;
 }
 
 .furniture {
@@ -235,40 +151,37 @@ main {
 	cursor: pointer;
 }
 
-.product {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: 11% 72% 11%;
-	grid-column-gap: 10px;
-	grid-row-gap: 10px;
-	border: 1px solid #a1a1a1;
-	border-radius: 3px;
-	padding: 10px;
+.product__btn {
+	text-decoration: none;
+	color: #000;
 }
 
-.product__item1 {
+.product1 {
 	grid-area: 1 / 1 / 2 / 2;
 }
-
-.product__item2 {
+.product2 {
 	grid-area: 1 / 2 / 2 / 3;
 }
-
-.product__item3 {
+.product3 {
+	grid-area: 1 / 3 / 2 / 4;
+}
+.product4 {
 	grid-area: 2 / 1 / 3 / 2;
 }
-
-.product__item4 {
+.product5 {
 	grid-area: 2 / 2 / 3 / 3;
 }
-
-.location {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	padding: 10px;
-	width: 90%;
+.product6 {
+	grid-area: 2 / 3 / 3 / 4;
+}
+.product7 {
+	grid-area: 3 / 1 / 4 / 2;
+}
+.product8 {
+	grid-area: 3 / 2 / 4 / 3;
+}
+.product9 {
+	grid-area: 3 / 3 / 4 / 4;
 }
 
 footer {
@@ -371,4 +284,10 @@ footer {
 	border: 1px solid #fff;
 	border-radius: 50%;
 	cursor: pointer;
+	transition: 0.4s ease;
+}
+
+.wrapper:hover {
+	width: 60px;
+	height: 60px;
 }

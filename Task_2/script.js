@@ -17,55 +17,6 @@ formBtn.addEventListener("click", () => {
 	addSearchInput()
 })
 
-const obj = [
-	"url('/images/furniture1.jpg')",
-	"url('/images/furniture2.jpg')",
-	"url('/images/furniture3.jpg')",
-]
-
-// moveLeft.addEventListener("click", () => {
-// 	if (
-// 		document.querySelector(".scrollable__title").innerText === "Best Furnitures"
-// 	) {
-// 		document.querySelector(".scrollable").style.backgroundImage = obj[2]
-// 		document.querySelector(".scrollable__title").innerText =
-// 			"Best Of The Best Furniture"
-// 	} else if (
-// 		document.querySelector(".scrollable__title").innerText ===
-// 		"Best Of The Best Furniture"
-// 	) {
-// 		document.querySelector(".scrollable").style.backgroundImage = obj[1]
-// 		document.querySelector(".scrollable__title").innerText = "Furniture"
-// 	} else if (
-// 		document.querySelector(".scrollable__title").innerText === "Furniture"
-// 	) {
-// 		document.querySelector(".scrollable").style.backgroundImage = obj[0]
-// 		document.querySelector(".scrollable__title").innerText = "Best Furnitures"
-// 	}
-// })
-
-// moveRight.addEventListener("click", () => {
-// 	console.log(document.querySelector(".scrollable__title").innerText)
-// 	if (
-// 		document.querySelector(".scrollable__title").innerText === "Best Furnitures"
-// 	) {
-// 		document.querySelector(".scrollable").style.backgroundImage = obj[1]
-// 		document.querySelector(".scrollable__title").innerText = "Furniture"
-// 	} else if (
-// 		document.querySelector(".scrollable__title").innerText === "Furniture"
-// 	) {
-// 		document.querySelector(".scrollable").style.backgroundImage = obj[2]
-// 		document.querySelector(".scrollable__title").innerText =
-// 			"Best Of The Best Furniture"
-// 	} else if (
-// 		document.querySelector(".scrollable__title").innerText ===
-// 		"Best Of The Best Furniture"
-// 	) {
-// 		document.querySelector(".scrollable").style.backgroundImage = obj[0]
-// 		document.querySelector(".scrollable__title").innerText = "Best Furnitures"
-// 	}
-// })
-
 const scrollableImages = document.querySelectorAll(".scrollable__image")
 
 scrollableImages.forEach((image, index) => {
