@@ -1,22 +1,5 @@
-const form = document.querySelector(".form")
-const formBtn = document.querySelector(".form-btn")
 const previous = document.querySelector(".previous")
 const next = document.querySelector(".next")
-
-const addSearchInput = () => {
-	form.innerHTML = `
-        <input type="text" class="form-input" />
-        <button class="input-btn">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
-    `
-}
-
-formBtn.addEventListener("click", () => {
-	formBtn.remove()
-	addSearchInput()
-})
-
 const sliders = document.querySelectorAll(".slider")
 const scrollableImages = document.querySelectorAll(".scrollable__image")
 const dots = document.querySelectorAll(".dot")

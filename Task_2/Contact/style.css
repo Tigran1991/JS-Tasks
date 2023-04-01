@@ -198,6 +198,11 @@ footer {
 
 .items > li {
 	color: #fff;
+	cursor: pointer;
+}
+
+.items > li:hover {
+	text-decoration: underline;
 }
 
 .footer-container__social {

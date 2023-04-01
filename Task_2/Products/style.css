@@ -128,22 +128,18 @@ main {
 	height: 100%;
 }
 
-.btn {
+.product__btn {
 	width: 100px;
 	height: 40px;
 	font-size: 30px;
+	color: #fff;
 	position: absolute;
 	top: 40%;
-	right: 40%;
+	right: 36%;
 	background-color: transparent;
 	border: none;
 	outline: none;
 	cursor: pointer;
-}
-
-.product__btn {
-	text-decoration: none;
-	color: #000;
 }
 
 .product1 {
@@ -229,6 +225,11 @@ footer {
 
 .items > li {
 	color: #fff;
+	cursor: pointer;
+}
+
+.items > li:hover {
+	text-decoration: underline;
 }
 
 .footer-container__social {
